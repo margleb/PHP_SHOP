@@ -2,7 +2,7 @@
 
 # php_flag magic_qoutes_gpc Off # отключения экранирования кавычек
 
-# AddDefaultCharset utf-8 # кодировка utf-8
+# AddDefaultCharset utf-8 # указываем серверу кодировку utf-8
 
 # DirectoryIndex index.php # искать файлы только index.php
 
