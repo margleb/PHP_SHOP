@@ -1,13 +1,13 @@
 # файл деректив вебсервера apache
 
-# php_flag magic_qoutes_gpc Off # отключения экранирования кавычек
+php_flag magic_qoutes_gpc Off
 
-# AddDefaultCharset utf-8 # указываем серверу кодировку utf-8
+AddDefaultCharset utf-8
 
-# DirectoryIndex index.php # искать файлы только index.php
+DirectoryIndex index.php
 
-# RewriteEngine on # включаем мод rewrite
+RewriteEngine on
 
-# RewriteCond %{REQUEST_FILENAME} !-f # если запрос пользователя не является файлом
+RewriteCond %{REQUEST_FILENAME} !-f
 
-# RewriteRule ^(.*) index.php # то, перенаправить пользователя на index.php
+RewriteRule ^(.*) index.php

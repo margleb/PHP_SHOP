@@ -10,3 +10,12 @@ session_start(); # суперглобальный массив сессии (ф�
 
 require_once 'config.php'; # базовые настройки для быстрого развертывания на хостинге
 require_once 'core/base/settings/internal_settings.php';
+
+use core\base\exceptions\RouteException;
+use core\base\controllers\RouteController;
+
+try {
+   // RouteController::getInstance()->route();
+} catch(RouteException $e) {
+    exit($e->getMessage());
+}
