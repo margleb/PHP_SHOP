@@ -1,12 +1,17 @@
 <?php
 namespace core\base\controllers;
-
+use core\base\settings\Settings;
 
 class RouteController
 {
     static private $_instance;
 
-    private function __construct() {}
+    private function __construct() {
+        // $array = ['1', 2, 3, 4];
+        // print_arr($array);
+        $s = Settings::get('routes');
+        exit();
+    }
 
     // __clone() создание копии обьекта
     private function __clone() {}
