@@ -12,12 +12,11 @@ class ShopSettings
     private function __clone(){}
 
     private $routes = [
-        'admin' => [
-            'name' => 'sudo',
+        'plugins' => [
+            'path' => 'core/plugins',
+            'hrUrl' => false,
+            'dif' => false,
         ],
-        'vasya' => [
-            'name' => 'vasya'
-        ]
     ];
 
     private $templateArr = [

@@ -12,14 +12,18 @@ class Settings
         'admin' => [
             'alias' => 'admin',
             'path' => 'core/admin/controllers',
-            'hrUrl' => false
+            'hrUrl' => false,
+            'routes' => [
+
+            ]
         ],
         'settings' => [
             'path' => 'core/base/settings'
         ],
         'plugins' => [
             'path' => 'core/plugins',
-            'hrUrl' => false
+            'hrUrl' => false,
+            'dif' => false
         ],
         'user' => [
             'path' => 'core/base/user/controllers',

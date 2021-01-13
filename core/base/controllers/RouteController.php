@@ -21,7 +21,7 @@ class RouteController
         # -1 так как порядковый символ равен 9
         # cервер по умлочанию подставлет слеш в корневой каталог
         # если слеш стоит в конце строки и это не корень сайта
-        if(strpos($adress_str, '/') == strlen($adress_str) - 1 && strpos($adress_str, '/' !== 0)) {
+        if(strrpos($adress_str, '/') == strlen($adress_str) - 1 && strpos($adress_str, '/' !== 0)) {
             # rtrim - обраезает пробелы а также символы в конце строки
             # 301 - код ответа сервера
             # переправляем пользователя на ссылку без символа /
@@ -40,7 +40,38 @@ class RouteController
          # если это административная панель
          if(strpos($adress_str, $this->routes['admin']['alias']) === strlen(PATH)) {
 
+             $url = explode('/', substr($adress_str, strlen(PATH . $this->routes['admin']['alias']) + 1));
+
+             # лежит ли в нулевом элементе обращение к плагину
+             if($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'] . PATH .  $this->routes['plugins']['path'] . $url[0])) {
+
+                 $plugin = array_shift($url);
+
+                 # cуществует ли для плагина файл настроек
+                 $pluginSettings = $this->routes['settings']['path'] . ucfirst($plugin . 'Settings');
+
+                 if(file_exists($_SERVER['DOCUMENT_ROOT'] . PATH . $pluginSettings . '.php')) {
+                     $pluginSettings = str_replace('/', '\\', $pluginSettings);
+                     $this->routes = $pluginSettings::get('routes');
+                 };
+
+                 $dir = $this->routes['plugins']['dir'] ? '/' . $this->routes['plugins']['dir'] .'/' : '/';
+                 $dir = str_replace('//', '/', $dir); // защита замена на один слеш
+
+                 $this->controller = $this->routes['plugins']['path'] . $plugin . $dir;
+
+                 $hrUrl = $this->routes['plugins']['hrUrl'];
+                 $route = 'plugins';
+
+             } else {
+                 $this->controller = $this->routes['admin']['path'];
+                 $hrUrl = $this->routes['admin']['hrUrl'];
+                 $route = 'admin';
+             }
+
+
          } else { # если пользовательская часть
+
             $url = explode('/', substr($adress_str, strlen(PATH)));
             $hrUrl = $this->routes['user']['hrUrl'];
             $this->controllers = $this->routes['user']['path'];
@@ -48,6 +79,30 @@ class RouteController
          }
 
          $this->createRoute($route, $url);
+
+         # чпу
+         if($url[1]) {
+             $count = count($url);
+             $key = '';
+
+             if(!$hrUrl) {
+                 $i = 1;
+             } else {
+                 $this->parameters['alias'] = $url[1];
+                 $i = 2;
+             }
+
+             for( ; $i < $count; $i++) {
+                if(!$key) {
+                    $key = $url[$i];
+                    $this->parameters[$key] = '';
+                } else {
+                    $this->parameters[$key] = $url[$i];
+                    $key = '';
+                }
+             }
+
+         }
 
          // exit();
 
