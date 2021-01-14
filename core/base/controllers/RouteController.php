@@ -58,13 +58,13 @@ class RouteController
                  $dir = $this->routes['plugins']['dir'] ? '/' . $this->routes['plugins']['dir'] .'/' : '/';
                  $dir = str_replace('//', '/', $dir); // защита замена на один слеш
 
-                 $this->controller = $this->routes['plugins']['path'] . $plugin . $dir;
+                 $this->controllers = $this->routes['plugins']['path'] . $plugin . $dir;
 
                  $hrUrl = $this->routes['plugins']['hrUrl'];
                  $route = 'plugins';
 
              } else {
-                 $this->controller = $this->routes['admin']['path'];
+                 $this->controllers = $this->routes['admin']['path'];
                  $hrUrl = $this->routes['admin']['hrUrl'];
                  $route = 'admin';
              }
@@ -103,8 +103,6 @@ class RouteController
              }
 
          }
-
-         // exit();
 
         } else {
             try {

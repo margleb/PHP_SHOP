@@ -11,25 +11,27 @@ class Settings
     private $routes = [
         'admin' => [
             'alias' => 'admin',
-            'path' => 'core/admin/controllers',
+            # 'alias' => 'sudo',
+            'path' => 'core/admin/controllers/',
             'hrUrl' => false,
             'routes' => [
-
+                'product' => 'goods/getGoods/sale'
             ]
         ],
         'settings' => [
-            'path' => 'core/base/settings'
+            'path' => 'core/base/settings/'
         ],
         'plugins' => [
-            'path' => 'core/plugins',
+            'path' => 'core/plugins/',
             'hrUrl' => false,
             'dif' => false
         ],
         'user' => [
-            'path' => 'core/base/user/controllers',
+            'path' => 'core/user/controllers/',
             'hrUrl' => true,
             'routes' => [
-
+                // alias для каталога; hello - входной; bye - выходной метод
+                # 'catalog' => 'site/hello/bye'
             ]
         ],
         'default' => [
