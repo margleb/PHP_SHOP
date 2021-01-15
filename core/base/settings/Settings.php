@@ -32,6 +32,7 @@ class Settings
             'routes' => [
                 // alias для каталога; hello - входной; bye - выходной метод
                 # 'catalog' => 'site/hello/bye'
+                'site' => 'index/hello'
             ]
         ],
         'default' => [
