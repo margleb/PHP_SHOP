@@ -4,15 +4,12 @@ use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
 use core\base\settings\ShopSettings;
 
-class RouteController
+class RouteController extends BaseController
 {
     static private $_instance;
 
     protected $routes;
-    protected $controllers;
-    protected $inputMethod; // метод собирающие данный из базы данных
-    protected $outputMethod; // метод подключения вида
-    protected $parameters;
+
 
     private function __construct() {
 
@@ -37,10 +34,12 @@ class RouteController
          $this->routes = Settings::get('routes');
          if(!$this->routes) throw new RouteException('Сайт находится на техническом обслуживании');
 
-         # если это административная панель
-         if(strpos($adress_str, $this->routes['admin']['alias']) === strlen(PATH)) {
+         $url = explode('/', substr($adress_str, strlen(PATH)));
 
-             $url = explode('/', substr($adress_str, strlen(PATH . $this->routes['admin']['alias']) + 1));
+         # если это административная панель
+         if($url[0] && $url[0] === $this->routes['admin']['alias']) {
+
+             array_shift($url); ## удаляем нулевой элемент admin
 
              # лежит ли в нулевом элементе обращение к плагину
              if($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'] . PATH .  $this->routes['plugins']['path'] . $url[0])) {
@@ -72,7 +71,6 @@ class RouteController
 
          } else { # если пользовательская часть
 
-            $url = explode('/', substr($adress_str, strlen(PATH)));
             $hrUrl = $this->routes['user']['hrUrl'];
             $this->controllers = $this->routes['user']['path'];
             $route = 'user';
