@@ -4,15 +4,25 @@ namespace core\user\controllers;
 use core\base\controllers\BaseController;
 
 class IndexController extends BaseController {
-//    protected function hello() {
-//        # в данной переменной доступен весь шаблон
-//        $template = $this->render(false, ['name' => 'Masha']);
-//        # exit($template);
-//        exit($template);
-//        # alias http://im.my/site
-//    }
+
+    protected $name;
 
     protected function inputData() {
 
+        $name = 'Ivan';
+
+        $content = $this->render('', compact('name'));
+        $header = $this->render(TEMPLATE .'header');
+        $footer = $this->render(TEMPLATE .'footer');
+
+        # возрващает массив с переменными
+        return compact('header', 'content', 'footer');
     }
+
+//    protected function outputData() {
+//        $vars = func_get_arg(0);
+//
+//        $this->page =  $this->render(TEMPLATE . 'templater', $vars);
+//    }
+
 }
