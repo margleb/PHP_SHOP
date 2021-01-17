@@ -18,7 +18,7 @@ class RouteController extends BaseController
         # -1 так как порядковый символ равен 9
         # cервер по умлочанию подставлет слеш в корневой каталог
         # если слеш стоит в конце строки и это не корень сайта
-        if(strrpos($adress_str, '/') == strlen($adress_str) - 1 && strpos($adress_str, '/' !== 0)) {
+        if(strrpos($adress_str, '/') == strlen($adress_str) - 1 && strrpos($adress_str, '/') !== 0) {
             # rtrim - обраезает пробелы а также символы в конце строки
             # 301 - код ответа сервера
             # переправляем пользователя на ссылку без символа /

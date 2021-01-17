@@ -15,6 +15,9 @@ use core\base\settings\Settings;
 abstract class BaseController
 {
 
+    # подключение трейда
+    use \core\base\controllers\BaseMethods;
+
     protected $page;
     protected $errors;
 

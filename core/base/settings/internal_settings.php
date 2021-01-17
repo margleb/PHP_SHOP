@@ -26,7 +26,7 @@ const ADMIN_CSS_JS = [
 
 # пути к css и javascript файлам пользовательской части сайта
 const USER_CSS_JS = [
-    'styles' => [],
+    'styles' => ['css/style.css'],
     'scripts' => []
 ];
 
