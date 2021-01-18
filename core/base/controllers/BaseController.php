@@ -26,6 +26,9 @@ abstract class BaseController
     protected $outputMethod; // метод подключения вида
     protected $parameters;
 
+    protected $styles;
+    protected $scripts;
+
     public function route() {
 
         // обьект, находящийся в свойстве controller
@@ -67,7 +70,7 @@ abstract class BaseController
 
         # логирование ошибок
         if($this->errors) {
-            $this->writeLog();
+            $this->writeLog($this->errors);
         }
 
         # завершаем скрипт, показав пользователю страницу
@@ -114,6 +117,26 @@ abstract class BaseController
             echo $this->page;
         }
         exit();
+    }
+
+    # инициализация стилей и скриптов
+    protected function init($admin = false) {
+
+        if(!$admin) {
+            if(USER_CSS_JS['styles']) {
+                foreach(USER_CSS_JS['styles'] as $item) $this->styles[] = PATH . TEMPLATE . trim($item, '/');
+            }
+            if(USER_CSS_JS['scripts']) {
+                foreach(USER_CSS_JS['scripts'] as $item) $this->scripts[] = PATH . TEMPLATE . trim($item, '/');
+            }
+        } else {
+            if(ADMIN_CSS_JS['styles']) {
+                foreach(ADMIN_CSS_JS['styles'] as $item) $this->styles[] = PATH . ADMIN_TEMPLATE . trim($item, '/');
+            }
+            if(ADMIN_CSS_JS['scripts']) {
+                foreach(ADMIN_CSS_JS['scripts'] as $item) $this->scripts[] = PATH . ADMIN_TEMPLATE . trim($item, '/');
+            }
+        }
     }
 
 }

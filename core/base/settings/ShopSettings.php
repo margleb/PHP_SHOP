@@ -1,26 +1,21 @@
 <?php
 
 namespace core\base\settings;
+use core\base\controllers\Singleton;
 use core\base\settings\Settings;
 
 class ShopSettings
 {
-    private static $_instance;
-    private $baseSettings;
 
-    private function __construct(){}
-    private function __clone(){}
+    use Singleton; # trait singleton
+
+    private $baseSettings;
 
     private $routes = [
         'plugins' => [
-            'path' => 'core/plugins/',
-            #'path' => 'lalala/',
-            'hrUrl' => false,
-            # 'dir' => '',
-            # 'dir' => 'controller',
             'dir' => false,
             'routes' => [
-                'product' => 'goods'
+
             ]
         ],
     ];
@@ -31,15 +26,14 @@ class ShopSettings
     ];
 
     static public function get($propery) {
-        return self::instance()->$propery;
+        return self::getInstance()->$propery;
     }
 
-    private static function instance() {
+    private static function getInstance() {
         if(self::$_instance instanceof self) {
             return self::$_instance;
         }
-        self::$_instance = new self;
-        self::$_instance->baseSettings = Settings::instance(); // получаем базовые настройки
+        self::instance()->baseSettings = Settings::instance(); // получаем базовые настройки
         $baseProperties = self::$_instance->baseSettings->clueProperties(get_class()); // соединяем с базовыми настройками
         self::$_instance->setProperty($baseProperties); // записывем в обьект все склеенные свойства
         return self::$_instance;

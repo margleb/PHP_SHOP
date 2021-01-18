@@ -1,12 +1,13 @@
 <?php
 
 namespace core\base\settings;
+use core\base\controllers\Singleton;
 
 class Settings
 {
-    private static $_instance;
-    private function __construct(){}
-    private function __clone(){}
+
+
+    use Singleton; # трейд Singleton
 
     private $routes = [
         'admin' => [
@@ -24,7 +25,7 @@ class Settings
         'plugins' => [
             'path' => 'core/plugins/',
             'hrUrl' => false,
-            'dif' => false
+            'dir' => false
         ],
         'user' => [
             'path' => 'core/user/controllers/',
@@ -39,7 +40,7 @@ class Settings
             'controller' => 'IndexController',
             'outputMethod' => 'outputData',
             'inputMethod' => 'inputData'
-        ]
+        ],
     ];
 
     private $templateArr = [
@@ -50,13 +51,6 @@ class Settings
 
     static public function get($propery) {
         return self::instance()->$propery;
-    }
-
-    public static function instance() {
-        if(self::$_instance instanceof self) {
-            return self::$_instance;
-        }
-        return self::$_instance = new self;
     }
 
     public function clueProperties($class) {

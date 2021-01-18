@@ -15,8 +15,13 @@ require_once 'libraries/function.php';
 use core\base\exceptions\RouteException;
 use core\base\controllers\RouteController;
 
+use core\base\settings\Settings;
+
+$s = Settings::get('routes');
+$s1 = Settings::get('templateArr');
+
 try {
-   RouteController::getInstance()->route();
+   RouteController::instance()->route();
 } catch(RouteException $e) {
     exit($e->getMessage());
 }

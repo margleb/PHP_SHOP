@@ -6,10 +6,10 @@ use core\base\settings\ShopSettings;
 
 class RouteController extends BaseController
 {
-    static private $_instance;
+
+    use Singleton; # trait singleton
 
     protected $routes;
-
 
     private function __construct() {
 
@@ -128,15 +128,4 @@ class RouteController extends BaseController
         return;
     }
 
-
-    // __clone() создание копии обьекта
-    private function __clone() {}
-
-    # singleton шаблон
-    static public function getInstance() {
-        if(self::$_instance instanceof self) {
-            return self::$_instance;
-        }
-        return self::$_instance = new self;
-    }
 }
