@@ -1,0 +1,12 @@
+Fault: 18-01-2021 16:03:07 - Ошибка подключения к базе данных: 1049  Unknown database 'im1'
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 19
+
+Fault: 18-01-2021 16:51:52 - Ошибка в SQL запросе: SELECT * FROM articles1 - 1146 Table 'im.articles1' doesn't exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
+Fault: 18-01-2021 16:52:35 - Ошибка в SQL запросе: SELECT name1 FROM articles - 1054 Unknown column 'name1' in 'field list'
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+

@@ -1,16 +1,8 @@
-Fault: 18-01-2021 12:39:12 - Неверное имя файла или подключения - core/user/controllers/IndexController
+Fault: 18-01-2021 16:49:07 - Неверное имя файла или подключения - core/admin/model/Model
 fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
 In line 41
 
-Fault: 18-01-2021 12:39:12 - Class core\user\controllers\IndexController does not exist
-fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
-In line 49
-
-Fault: 18-01-2021 12:42:21 - Неверное имя файла или подключения - core/user/controllers/IndexController
+Fault: 18-01-2021 16:50:22 - Неверное имя файла или подключения - core/admin/model/Model
 fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
 In line 41
-
-Fault: 18-01-2021 12:42:21 - Class core\user\controllers\IndexController does not exist
-fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
-In line 49
 
