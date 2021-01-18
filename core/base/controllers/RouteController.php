@@ -2,7 +2,6 @@
 namespace core\base\controllers;
 use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
-use core\base\settings\ShopSettings;
 
 class RouteController extends BaseController
 {
@@ -29,10 +28,12 @@ class RouteController extends BaseController
         # имя скрипта, который выполняет код
         $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
 
+        # $class = new NClass();
+
         if($path == PATH) {
 
          $this->routes = Settings::get('routes');
-         if(!$this->routes) throw new RouteException('Сайт находится на техническом обслуживании');
+         if(!$this->routes) throw new RouteException('Отсутсвуют маршуруты в базовых настройках', 1);
 
          $url = explode('/', substr($adress_str, strlen(PATH)));
 
@@ -103,11 +104,7 @@ class RouteController extends BaseController
          }
 
         } else {
-            try {
-                throw new \Exception('Некорректная дериктория сайта');
-            } catch(\Exception $e) {
-                exit($e->getMessage());
-            }
+            throw new RouteException('Некорректная дериктория сайта', 1);
         }
     }
 

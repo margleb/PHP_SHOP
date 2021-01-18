@@ -38,7 +38,7 @@ function autoloadMainClasses($class_name) {
     $class_name = str_replace('\\', '/', $class_name);
     // @ - блкирует вывод всяких ошибок, генерируемых include_once
     if(!@include_once $class_name . '.php') {
-        throw new \Exception('Неверное имя файла или подключения - '.$class_name);
+        throw new RouteException('Неверное имя файла или подключения - '.$class_name);
     }
 }
 

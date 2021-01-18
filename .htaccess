@@ -9,5 +9,7 @@ DirectoryIndex index.php
 RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-f
+# по умолчанию браузер запрашивает favicon если мы его ему не отдали
+RewriteCond %{REQUEST_FILENAME} !favicon.ico
 
 RewriteRule ^(.*) index.php
