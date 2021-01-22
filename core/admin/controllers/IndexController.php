@@ -11,23 +11,18 @@ class IndexController extends BaseController
 
         $db = Model::instance();
 
-        /* ОДИН КО МНОГИМ */
+        $table = 'teachers';
 
-        # вложенный запрос
-        // $query = "SELECT id, name FROM product WHERE parent_id = ( SELECT id FROM category WHERE name='Apple')";
+//        $res = $db->get($table, [
+//            'fields' => ['id', 'name'],
+//            'where' => ['fio' => 'smirnova', 'name' => 'Masha', 'surname' => 'Sergeeva'],
+//            'operand' => ['=', '<>'], # <> не равно
+//            'condition' => ['AND'],
+//            'order' => ['fio', 'name'],
+//            'order_direction' => ['ASC', 'DESC'],
+//            'limit' => '1'
+//        ]);
 
-        # с помочью одной инструкции LeftJoin
-        // $query = "SELECT product.id, product.name FROM product LEFT JOIN category ON product.parent_id = category.id WHERE category.id = 1";
-        // $query = "SELECT category.id, category.name, product.id as p_id, product.name as p_name FROM product LEFT JOIN category ON product.parent_id = category.id";
-
-        /* МНОГИЕ КО МНОГИМ */
-        $query = "SELECT teachers.id, teachers.name, students.id as s_id, students.name as s_name 
-        FROM teachers 
-        LEFT JOIN stud_teach ON teachers.id = stud_teach.teachers
-        LEFT JOIN students ON stud_teach.students = students.id
-        ";
-
-        $res = $db->query($query);
 
         exit('I am admin panel');
     }
