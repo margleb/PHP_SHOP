@@ -15,3 +15,31 @@ Fault: 22-01-2021 8:01:34 - Ошибка в SQL запросе: SELECT id, name 
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 32
 
+Fault: 22-01-2021 20:09:44 - Ошибка в SQL запросе: SELECT teachers.id,teachers.name FROM teachers  WHERE  teachers.name IN ('masha') AND teachers.surname<>(SELECT name FROM students WHERE id = 1)  ORDER_BY 1 DESC,teachers.name DESC LIMIT1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER_BY 1 DESC,teachers.name DESC LIMIT1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
+Fault: 22-01-2021 20:12:50 - Ошибка в SQL запросе: SELECT teachers.id,teachers.name FROM teachers  WHERE  teachers.name='masha'  ORDER_BY teachers.name DESC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER_BY teachers.name DESC LIMIT 1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
+Fault: 22-01-2021 20:13:52 - Ошибка в SQL запросе: SELECT teachers.id,teachers.name FROM teachers  WHERE  teachers.name='masha'  ORDER_BY teachers.name DESC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER_BY teachers.name DESC LIMIT 1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
+Fault: 22-01-2021 20:15:09 - Ошибка в SQL запросе: SELECT teachers.id,teachers.name FROM teachers  WHERE  teachers.name='masha'  ORDER_BY teachers.name DESC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER_BY teachers.name DESC LIMIT 1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
+Fault: 22-01-2021 20:19:05 - Ошибка в SQL запросе: SELECT teachers.id, teachers.name,  FROM teachers  WHERE  teachers.name='masha'  ORDER_BY teachers.name DESC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM teachers  WHERE  teachers.name='masha'  ORDER_BY teachers.name DESC LIMIT 1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
+Fault: 22-01-2021 20:19:28 - Ошибка в SQL запросе: SELECT teachers.id, teachers.name,  FROM teachers  WHERE  teachers.name='masha'  ORDER_BY teachers.name DESC LIMIT 1 - 0 
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
+Fault: 22-01-2021 20:19:55 - Ошибка в SQL запросе: SELECT teachers.id, teachers.name,  FROM teachers  WHERE  teachers.name='masha'  ORDER_BY teachers.name DESC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM teachers  WHERE  teachers.name='masha'  ORDER_BY teachers.name DESC LIMIT 1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
