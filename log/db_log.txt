@@ -10,3 +10,8 @@ Fault: 18-01-2021 16:52:35 - Ошибка в SQL запросе: SELECT name1 FR
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 32
 
+Fault: 22-01-2021 8:01:34 - Ошибка в SQL запросе: SELECT id, name FROM product WHERE parent_id = 1 
+                  (SELECT id FROM category WHERE name='Apple') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(SELECT id FROM category WHERE name='Apple')' at line 2
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 32
+
