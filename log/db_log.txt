@@ -43,3 +43,7 @@ Fault: 22-01-2021 20:19:55 - Ошибка в SQL запросе: SELECT teachers
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 32
 
+Fault: 11-02-2021 8:17:52 - Ошибка в SQL запросе: INSER INTO teachers (content,gallery_img,img) VALUES ('Hello','[\"red.jpg\",\"blue.jpg\",\"black.jpg\"]','main_img.jpg') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO teachers (content,gallery_img,img) VALUES ('Hello','[\"red.jpg\",\"bl' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
