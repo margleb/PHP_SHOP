@@ -23,12 +23,10 @@ class IndexController extends BaseController
         $files['gallery_img'] = ['red.jpg', 'blue.jpg', 'black.jpg'];
         $files['img'] = 'main_img.jpg';
 
-        $res = $db->add($table, [
-            'fields' => ['name' => 'Katya', 'content' => 'Hello'],
-            'except' => ['name'],
-            'files' => $files
-        ]);
 
+        $_POST['name'] = 'Masha';
+
+        $res = $db->showColumns($table);
 
         exit('id =' .  $res['id'] . ' Name = ' . $res['name']);
     }
