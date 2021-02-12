@@ -47,3 +47,7 @@ Fault: 11-02-2021 8:17:52 - Ошибка в SQL запросе: INSER INTO teach
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 38
 
+Fault: 12-02-2021 21:29:06 - Ошибка в SQL запросе: UPDATE teachers SET id='2',name='Ivan'  - 1062 Duplicate entry '2' for key 'PRIMARY'
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+

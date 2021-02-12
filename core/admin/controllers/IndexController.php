@@ -20,13 +20,19 @@ class IndexController extends BaseController
         // exit(print_arr(json_decode($c)));
 
 
-        $files['gallery_img'] = ['red.jpg', 'blue.jpg', 'black.jpg'];
-        $files['img'] = 'main_img.jpg';
+        $files['gallery_img'] = [''];
+        $files['img'] = '';
 
 
-        $_POST['name'] = 'Masha';
+        $_POST['id'] = 6;
+        $_POST['name'] = '';
+        $_POST['content'] = "<p>New' book1<p>";
 
-        $res = $db->showColumns($table);
+
+        $res = $db->edit($table
+        // ['fields' => ['id' => 2, 'name' => 'Pasha'],
+        // 'where' => ['id' => 1]]
+        );
 
         exit('id =' .  $res['id'] . ' Name = ' . $res['name']);
     }
