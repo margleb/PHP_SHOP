@@ -13,28 +13,33 @@ class IndexController extends BaseController
 
         $table = 'teachers';
 
-        // $color = ['red', 'blue', 'black'];
-        // $c =  json_encode($color);
-        // $c =  json_encode($table);
-        // echo $c . '<br>';
-        // exit(print_arr(json_decode($c)));
+//        for($i = 0; $i < 8; $i++) {
+//            $s_id = $db->add('students', [
+//                'fields' => ['name' => 'student - ' . $i, 'content' => 'content - ' . $i],
+//                'return_id' => true
+//            ]);
+//            $db->add('teachers', [
+//                'fields' => ['name' => 'teacher - ' . $i, 'content' => 'content - ' . $i, 'student_id' => $s_id],
+//                'return_id' => true
+//            ]);
+//        }
 
+//        $query = "DELETE category, products FROM category
+//        LEFT JOIN products ON category.id = products.parent_id
+//        WHERE id = 1";
 
-        $files['gallery_img'] = [''];
-        $files['img'] = '';
+        $res = $db->delete($table, [
+            // 'fields' => ['id', 'name', 'img'],
+            'where' => ['id' => 5],
+            'join' => [
+                'students' => [
+                    'table' => 'students',
+                    'on' => ['student_id', 'id']
+                ]
+            ]
+        ]);
 
-
-        $_POST['id'] = 6;
-        $_POST['name'] = '';
-        $_POST['content'] = "<p>New' book1<p>";
-
-
-        $res = $db->edit($table
-        // ['fields' => ['id' => 2, 'name' => 'Pasha'],
-        // 'where' => ['id' => 1]]
-        );
-
-        exit('id =' .  $res['id'] . ' Name = ' . $res['name']);
+        // exit('id =' .  $res['id'] . ' Name = ' . $res['name']);
     }
 
 }
