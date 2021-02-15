@@ -1,0 +1,16 @@
+Fault: 15-02-2021 11:52:48 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
+Fault: 15-02-2021 11:56:40 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
+Fault: 15-02-2021 11:57:05 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
+Fault: 15-02-2021 12:00:26 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
