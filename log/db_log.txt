@@ -14,3 +14,23 @@ Fault: 15-02-2021 12:00:26 - Ошибка в SQL запросе: SHOW COLUMNS FR
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 38
 
+Fault: 15-02-2021 18:34:30 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
+Fault: 15-02-2021 18:36:44 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
+Fault: 15-02-2021 18:37:07 - Ошибка в SQL запросе: SHOW COLUMNS FROM  - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
+Fault: 15-02-2021 18:38:42 - Ошибка в SQL запросе: SELECT teachers.idas id, teachers.name, teachers.img, teachers.parent_id FROM teachers   ORDER BY teachers.parent_id ASC,teachers.menu_position ASC  - 1054 Unknown column 'teachers.idas' in 'field list'
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
+Fault: 15-02-2021 18:39:26 - Ошибка в SQL запросе: SELECT teachers.idas id, teachers.name, teachers.img, teachers.parent_id FROM teachers   ORDER BY teachers.parent_id ASC,teachers.menu_position ASC  - 1054 Unknown column 'teachers.idas' in 'field list'
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 38
+
