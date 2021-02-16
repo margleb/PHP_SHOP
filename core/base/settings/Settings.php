@@ -49,7 +49,7 @@ class Settings
         'text' => ['name'],
     ];
 
-    private $example = 'example';
+    private $expansion = 'core/admin/expansion/';
 
     static public function get($propery) {
         return self::instance()->$propery;
