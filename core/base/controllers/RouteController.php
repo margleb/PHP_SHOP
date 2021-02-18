@@ -14,16 +14,6 @@ class RouteController extends BaseController
 
         $adress_str = $_SERVER['REQUEST_URI'];
 
-        # -1 так как порядковый символ равен 9
-        # cервер по умлочанию подставлет слеш в корневой каталог
-        # если слеш стоит в конце строки и это не корень сайта
-        if(strrpos($adress_str, '/') == strlen($adress_str) - 1 && strrpos($adress_str, '/') !== 0) {
-            # rtrim - обраезает пробелы а также символы в конце строки
-            # 301 - код ответа сервера
-            # переправляем пользователя на ссылку без символа /
-            $this->redirect(rtrim($adress_str, '/'), 301);
-        }
-
         # в переменную path сохранили обрезанную строку в которой содержиться имя выполнения скрипта
         # имя скрипта, который выполняет код
         $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
@@ -31,6 +21,17 @@ class RouteController extends BaseController
         # $class = new NClass();
 
         if($path == PATH) {
+
+        # -1 так как порядковый символ равен 9
+        # cервер по умлочанию подставлет слеш в корневой каталог
+        # если слеш стоит в конце строки и это не корень сайта
+        if(strrpos($adress_str, '/') == strlen($adress_str) - 1 &&
+            strrpos($adress_str, '/') !== strlen(PATH) - 1) {
+            # rtrim - обраезает пробелы а также символы в конце строки
+            # 301 - код ответа сервера
+            # переправляем пользователя на ссылку без символа /
+            $this->redirect(rtrim($adress_str, '/'), 301);
+        }
 
          $this->routes = Settings::get('routes');
          if(!$this->routes) throw new RouteException('Отсутсвуют маршуруты в базовых настройках', 1);
