@@ -18,6 +18,10 @@ abstract class BaseController
     # подключение трейда
     use \core\base\controllers\BaseMethods;
 
+    protected $header;
+    protected $content;
+    protected $footer;
+
     protected $page;
     protected $errors;
 
@@ -26,6 +30,7 @@ abstract class BaseController
     protected $outputMethod; // метод подключения вида
     protected $parameters;
 
+    protected $template;
     protected $styles;
     protected $scripts;
 

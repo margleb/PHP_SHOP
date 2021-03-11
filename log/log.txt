@@ -22,3 +22,179 @@ Fault: 18-02-2021 8:02:58 - Class core\user\controllers\AdmonController does not
 fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
 In line 49
 
+Fault: 11-03-2021 21:03:25 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:03:25 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:03:25 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:03:25 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:03:26 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:03:26 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:03:26 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:03:26 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:03:26 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:03:26 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:03:26 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:03:26 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:03:26 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:03:26 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:03:26 - Неверное имя файла или подключения - core/user/controllers/ImagesController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:03:26 - Class core\user\controllers\ImagesController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:04:34 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:04:34 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:04:34 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:04:34 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:04:35 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:04:35 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:04:35 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:04:35 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:04:35 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:04:35 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:04:35 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:04:35 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:04:35 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:04:35 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:04:35 - Неверное имя файла или подключения - core/user/controllers/ImagesController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:04:35 - Class core\user\controllers\ImagesController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:14:06 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:14:06 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:14:06 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:14:06 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:14:07 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:14:07 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:14:07 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:14:07 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:14:07 - Неверное имя файла или подключения - core/user/controllers/TemplateController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:14:07 - Class core\user\controllers\TemplateController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+
+Fault: 11-03-2021 21:14:07 - Неверное имя файла или подключения - core/user/controllers/ImagesController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 11-03-2021 21:14:07 - Class core\user\controllers\ImagesController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 54
+

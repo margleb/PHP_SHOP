@@ -8,6 +8,7 @@ defined('VG_ACCESS') or die('Access denied');
 
 const TEMPLATE = 'templates/default/'; # шаблоны пользовательской части сайта
 const ADMIN_TEMPLATE = 'core/admin/views/'; # шаблоны административной части сайта
+const UPLOAD_DIR = 'userfiles/'; # дерриктория для загрузки изображений
 
 const COOKIE_VERSION = '1.0.0'; # версия cookie файлов
 const CRYPT_KEY = ''; # ключ алгоритма шифоравания
@@ -20,13 +21,13 @@ const QTY_LINKS = 3; # количество ссылок постранично�
 
 # пути к css и javascript файлам административной части сайта
 const ADMIN_CSS_JS = [
-    'styles' => [],
+    'styles' => ['css/main.css'],
     'scripts' => []
 ];
 
 # пути к css и javascript файлам пользовательской части сайта
 const USER_CSS_JS = [
-    'styles' => ['css/style.css'],
+    'styles' => [],
     'scripts' => []
 ];
 
