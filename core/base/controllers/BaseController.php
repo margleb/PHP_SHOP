@@ -43,7 +43,7 @@ abstract class BaseController
             // метод ReflectionMethod, проверяет существование методов в данном классе
             $object = new \ReflectionMethod($controller, 'request');
             $args = [ // массив параметров с входным и выходним методом
-                'paramenters' => $this->parameters,
+                'parameters' => $this->parameters,
                 'inputMethod' => $this->inputMethod,
                 'outputMethod' => $this->outputMethod
             ];
