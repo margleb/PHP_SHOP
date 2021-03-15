@@ -34,6 +34,9 @@ abstract class BaseController
     protected $styles;
     protected $scripts;
 
+
+    protected $userId;
+
     public function route() {
 
         // обьект, находящийся в свойстве controller

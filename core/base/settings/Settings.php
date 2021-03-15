@@ -54,6 +54,17 @@ class Settings
         'text' => ['name'],
     ];
 
+
+    private $translate = [
+        'name' => ['Название', 'Не более 100 символов']
+    ];
+
+    private $blockNeedle = [
+        'vg-rows' => [],
+        'vg_img' => ['id'],
+        'vg_content' => ['content']
+    ];
+
     private $expansion = 'core/admin/expansion/';
 
     static public function get($propery) {

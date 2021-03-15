@@ -14,7 +14,7 @@ class ShowController extends BaseAdmin
 {
     protected function inputData() {
 
-        $this->execBase();
+        if(!$this->userId) $this->execBase();
 
         $this->createTableData();
 
@@ -25,18 +25,6 @@ class ShowController extends BaseAdmin
 
     }
 
-    protected function outputData() {
-
-        $args = func_get_arg(0); // получаем один из элементов массива
-        $vars  = $args ? $args : [];
-
-        if(!$this->template) $this->template = ADMIN_TEMPLATE . 'show';
-
-        $this->content = $this->render($this->template, $vars);
-
-        return parent::outputData();
-
-    }
 
     protected function createData($arr = []) {
         $fields = [];
