@@ -34,3 +34,9 @@ Fault: 15-02-2021 18:39:26 - Ошибка в SQL запросе: SELECT teachers
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 38
 
+Fault: 17-03-2021 11:33:08 - Ошибка в SQL запросе: SELECT * FROM information_shcema.KEY_COLUMN_USAGE
+                  WHERE TABLE_SCHEMA = 'im' AND TABLE_NAME = 'articles' AND
+                  CONSTRAINT_NAME <> 'PRIMARY' AND REFERENCED_TABLE_NAME is not null - 1146 Table 'information_shcema.key_column_usage' doesn't exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
