@@ -626,3 +626,11 @@ Fault: 15-03-2021 14:14:04 - Class core\user\controllers\UserfilesController doe
 fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
 In line 57
 
+Fault: 20-03-2021 14:25:29 - Отсутсвует шаблон - core/admin/views/add
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 115
+
+Fault: 20-03-2021 14:26:17 - Отсутсвует шаблон - core/admin/views/add
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 115
+
