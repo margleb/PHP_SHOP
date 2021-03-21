@@ -40,3 +40,23 @@ Fault: 17-03-2021 11:33:08 - Ошибка в SQL запросе: SELECT * FROM i
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 37
 
+Fault: 21-03-2021 9:22:45 - Ошибка в SQL запросе: SELECT teachers.COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) as count FROM teachers' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 21-03-2021 9:28:29 - Ошибка в SQL запросе: SELECT teachers..COUNT(*) as count FROM teachers     - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.COUNT(*) as count FROM teachers' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 21-03-2021 9:34:23 - Ошибка в SQL запросе: SELECT pages. FROM pages   ORDER BY pages.id ASC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM pages   ORDER BY pages.id ASC LIMIT 1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 21-03-2021 9:34:58 - Ошибка в SQL запросе: SELECT pages. FROM pages   ORDER BY pages.id ASC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM pages   ORDER BY pages.id ASC LIMIT 1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 21-03-2021 9:36:59 - Ошибка в SQL запросе: SELECT pages. FROM pages   ORDER BY pages.id ASC LIMIT 1 - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM pages   ORDER BY pages.id ASC LIMIT 1' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
