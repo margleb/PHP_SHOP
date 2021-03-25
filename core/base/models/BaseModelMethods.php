@@ -211,39 +211,98 @@ abstract class BaseModelMethods
 
     protected function createInsert($fields, $files, $except) {
 
-
         $insert_arr = [];
 
-        if($fields) {
+        $insert_arr['fields'] = '(';
 
-            foreach($fields as $row => $value) {
+        $array_type = array_keys($fields)[0];
 
-                if($except && in_array($row, $except)) continue;
+        // если множественная вставка
+        if(is_int($array_type)) {
 
-                $insert_arr['fields'] .= $row . ',';
+            $check_fields = false; // предотвращает появление ненужных колонок
+            $count_fields = 0; // предотвращает появление ненужных полей
 
-                if(in_array($value, $this->sqlFunc)) {
-                    $insert_arr['values'] .= $value . ',';
-                } else {
-                    $insert_arr['values'] .= "'" . addslashes($value) . "',";
+             foreach ($fields as $i => $item) {
+
+                $insert_arr['values'] .= '(';
+
+                if(!$count_fields) $count_fields = count($fields[$i]); // будем равнятся на это кол-во эментов в массиве
+
+                $j = 0; // счетчик подсчитывает кол-во элементов в массиве
+
+                foreach($item as $row => $value) {
+                    if($except && in_array($row, $except)) continue;
+
+                    if(!$check_fields) $insert_arr['fields'] .= $row . ',';
+
+                    if(in_array($value, $this->sqlFunc)) {
+                        $insert_arr['values'] .= $value . ', ';
+                    } else if($value == 'NULL' || $value === NULL) {
+                        $insert_arr['values'] .= "NULL" . ',';
+                    } else {
+                        $insert_arr['values'] .= "'" . addslashes($value) . "',";
+                    }
+
+                    $j++;
+
+
+                    if($j == $count_fields) break; // ломаем цикл если количество полей больше чем должно быть
+
                 }
 
+                if($j < $count_fields) { // если количество значений меньше, то добиваем их пустыми
+                    for(; $j < $count_fields; $j++) {
+                        $insert_arr['values'] .= "NULL" . ',';
+                    }
+                }
+
+
+                $insert_arr['values'] = rtrim($insert_arr['values'], ',') . '),';
+
+                if(!$check_fields) $check_fields = true; // уже заполнили fields, поэтому больше не нужно
+
+                //35.56
             }
+
+        } else {
+
+            $insert_arr['values'] = '(';
+
+            if($fields) {
+                foreach($fields as $row => $value) {
+                    if($except && in_array($row, $except)) continue;
+
+                    $insert_arr['fields'] .= $row . ', ';
+
+                    if(in_array($value, $this->sqlFunc)) {
+                        $insert_arr['values'] .= $value . ', ';
+                    } else if($value == 'NULL' || $value === NULL) {
+                        $insert_arr['values'] .= "NULL" . ',';
+                    } else {
+                        $insert_arr['values'] .= "'" . addslashes($value) . "',";
+                    }
+
+                }
+            }
+            if($files) {
+                foreach($files as $row => $file) {
+
+                    $insert_arr['fields'] .= $row . ',';
+
+                    if(is_array($file)) $insert_arr['values'] .= "'" . addslashes(json_encode($file)) . "',";
+                    else $insert_arr['values'] .= "'" . addslashes($file) . "',";
+                }
+            }
+
+
+            $insert_arr['values'] = rtrim($insert_arr['values'], ',') . ')';
+
         }
 
-        if($files) {
-            foreach($files as $row => $file) {
 
-                $insert_arr['fields'] .= $row . ',';
-
-                if(is_array($file)) $insert_arr['values'] .= "'" . addslashes(json_encode($file)) . "',";
-                else $insert_arr['values'] .= "'" . addslashes($file) . "',";
-
-            }
-        }
-
-            foreach($insert_arr as $key => $arr) $insert_arr[$key] = rtrim($arr, ',');
-
+        $insert_arr['fields'] = rtrim($insert_arr['fields'], ',') . ')';
+        $insert_arr['values'] = rtrim($insert_arr['values'], ',');
 
         return $insert_arr;
     }

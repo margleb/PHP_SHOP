@@ -27,6 +27,27 @@ class AddController extends BaseAdmin
 
         $this->createOutputData();
 
+        $this->manyAdd();
+
+        exit;
+
+    }
+
+    protected function manyAdd() {
+        // $fields = ['name' => 'Lena'];
+        $fields = [
+            'name' => 'Lena1111!!', 'menu_position' => 1,
+            // 2 => ['name' => 'Natalia', 'img' => '3.jpg']
+        ];
+        $files = [
+            // 'img' => '1.jpg',
+            'img' => ['5.jpg', '6.jpg']
+        ];
+
+        $this->model->add('teachers', [
+            'fields' => $fields,
+            'files' => $files
+        ]);
     }
 
 

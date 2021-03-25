@@ -642,3 +642,7 @@ Fault: 21-03-2021 9:22:35 - Class core\user\controllers\AddController does not e
 fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
 In line 57
 
+Fault: 25-03-2021 17:26:47 - Отсутсвует шаблон - core/admin/views/add
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 115
+

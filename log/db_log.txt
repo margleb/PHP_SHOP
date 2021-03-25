@@ -60,3 +60,47 @@ Fault: 21-03-2021 9:36:59 - Ошибка в SQL запросе: SELECT pages. FR
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 37
 
+Fault: 25-03-2021 11:39:35 - Ошибка в SQL запросе: INSERT INTO teachers (name,name) VALUES ('Vika','Vika') - 1110 Column 'name' specified twice
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 16:52:32 - Ошибка в SQL запросе: INSERT INTO teachers ('Lena','2.jpg')) VALUES ('Lena','2.jpg') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Lena','2.jpg')) VALUES ('Lena','2.jpg')' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 16:59:26 - Ошибка в SQL запросе: INSERT INTO teachers () VALUES ('Lena','2.jpg') - 1136 Column count doesn't match value count at row 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 17:03:38 - Ошибка в SQL запросе: INSERT INTO teachers (name, img, ) VALUES ('Lena','2.jpg') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Lena','2.jpg')' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 17:12:53 - Ошибка в SQL запросе: INSERT INTO teachers (name, img, ) VALUES ('Lena','2.jpg'),('Natalia','3.jpg') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Lena','2.jpg'),('Natalia','3.jpg')' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 17:24:21 - Ошибка в SQL запросе: INSERT INTO teachers (name,img) VALUES ('Lena','2.jpg'),('Natalia','3.jpg') - 2006 MySQL server has gone away
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 17:29:55 - Ошибка в SQL запросе: INSERT INTO teachers (name,img,menu_position) VALUES ('Lena','2.jpg','1'),('Natalia','3.jpg') - 1136 Column count doesn't match value count at row 2
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 17:31:00 - Ошибка в SQL запросе: INSERT INTO teachers (name,img,menu_position) VALUES ('Lena','2.jpg','1'),('Natalia','3.jpg',NULL,NULL) - 1136 Column count doesn't match value count at row 2
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 17:42:52 - Ошибка в SQL запросе: INSERT INTO teachers (name, menu_position, img, ) VALUES ('Lena1111','1','1.jpg') - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Lena1111','1','1.jpg')' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 17:47:41 - Ошибка в SQL запросе: INSERT INTO teachers (name, menu_position, gallery_img) VALUES ('Lena1111!!','1','[\"5.jpg\",\"6.jpg\"]', ) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 25-03-2021 17:48:05 - Ошибка в SQL запросе: INSERT INTO teachers (name, menu_position, gallery_img) VALUES ('Lena1111!!','1','[\"5.jpg\",\"6.jpg\"]') - 1054 Unknown column 'gallery_img' in 'field list'
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
