@@ -45,15 +45,18 @@ class Settings
 
     private $defaultTable = 'teachers';
 
+    // путь к шаблонам
+    private $formTemplates = PATH . 'core/admin/view/include/form_templates/';
+
     private $projectTables = [
         'teachers' => ['name' => 'Учителя', 'img' => 'pages.png'],
         'students' => ['name' => 'Ученики']
     ];
 
-    private $templateArr = [
-        'text' => ['name'],
+    private $templateArr = [ // блоки шаблонов
+        'text' => ['name', 'phone', 'adress'],
+        'textarea' => ['content', 'keywords']
     ];
-
 
     private $translate = [
         'name' => ['Название', 'Не более 100 символов']

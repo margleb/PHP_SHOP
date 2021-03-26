@@ -30,6 +30,9 @@ abstract class BaseAdmin extends BaseController
     protected $translate;
     protected $blocks = [];
 
+    protected $templateArr; // свойства для шаблонов
+    protected $formTemplates; // путь до шаблонаов
+
     protected function inputData() {
         $this->init(true);
 
@@ -38,6 +41,8 @@ abstract class BaseAdmin extends BaseController
         if(!$this->model) $this->model = Model::instance();
         if(!$this->menu) $this->menu = Settings::get('projectTables');
         if(!$this->adminPath) $this->adminPath = PATH . Settings::get('routes')['admin']['alias'] . '/';
+        if(!$this->templateArr) $this->templateArr = Settings::get('templateArr');
+        if(!$this->formTemplates) $this->formTemplates = Settings::get('formTemplates');
 
         $this->sendNoCacheHeaders();
 
