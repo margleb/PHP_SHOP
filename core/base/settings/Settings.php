@@ -46,7 +46,7 @@ class Settings
     private $defaultTable = 'teachers';
 
     // путь к шаблонам
-    private $formTemplates = PATH . 'core/admin/view/include/form_templates/';
+    private $formTemplates = PATH . 'core/admin/views/include/form_templates/';
 
     private $projectTables = [
         'teachers' => ['name' => 'Учителя', 'img' => 'pages.png'],
@@ -54,8 +54,11 @@ class Settings
     ];
 
     private $templateArr = [ // блоки шаблонов
-        'text' => ['name', 'phone', 'adress'],
-        'textarea' => ['content', 'keywords']
+        'text' => ['name'],
+        'textarea' => ['content'],
+        'radio' => ['visible'],
+        'select' => ['menu_position', 'parent_id'],
+        'img' => ['img']
     ];
 
     private $translate = [
@@ -73,8 +76,8 @@ class Settings
 
     private $blockNeedle = [
         'vg-rows' => [],
-        'vg_img' => ['id'],
-        'vg_content' => ['content']
+        'vg-img' => ['img'],
+        'vg-content' => ['content']
     ];
 
     private $expansion = 'core/admin/expansion/';

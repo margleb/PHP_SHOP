@@ -686,3 +686,7 @@ Fault: 26-03-2021 8:54:21 - Class core\user\controllers\CoreController does not 
 fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
 In line 57
 
+Fault: 27-03-2021 12:18:47 - Не найжен шаблон E:/OSpanel/domains/im.my/public_html/core/admin/view/include/form_templates/text.php
+fileE:\OSpanel\domains\im.my\public_html\core\admin\views\add.php
+In line 30
+

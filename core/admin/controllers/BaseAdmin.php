@@ -26,12 +26,12 @@ abstract class BaseAdmin extends BaseController
     protected $menu;
     protected  $title;
 
-
     protected $translate;
     protected $blocks = [];
 
     protected $templateArr; // свойства для шаблонов
     protected $formTemplates; // путь до шаблонаов
+    protected $noDelete;
 
     protected function inputData() {
         $this->init(true);
