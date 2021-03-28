@@ -30,8 +30,14 @@ class AddController extends BaseAdmin
 
         $this->createOutputData();
 
-    }
+//        $this->data = [
+//            'name' => 'Masha',
+//            'keywords' => 'Ключевики',
+//            'img' => 'kitten.jpg',
+//            'gallery_img' => json_encode(['kitten.jpg', 'kitten_2.jpg']),
+//        ];
 
+    }
 
     protected function createForeignProperty($arr, $rootItems) {
 

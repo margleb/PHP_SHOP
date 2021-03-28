@@ -690,3 +690,19 @@ Fault: 27-03-2021 12:18:47 - Не найжен шаблон E:/OSpanel/domains/i
 fileE:\OSpanel\domains\im.my\public_html\core\admin\views\add.php
 In line 30
 
+Fault: 27-03-2021 18:22:17 - Неверное имя файла или подключения - core/user/controllers/CoreController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 27-03-2021 18:22:17 - Class core\user\controllers\CoreController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 57
+
+Fault: 28-03-2021 7:33:38 - Неверное имя файла или подключения - core/admin/controllers/EditController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 28-03-2021 7:33:38 - Class core\admin\controllers\EditController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 57
+

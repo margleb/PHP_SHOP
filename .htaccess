@@ -1,6 +1,6 @@
 # файл деректив вебсервера apache
 
-php_flag magic_qoutes_gpc Off
+php_flag magic_quotes_gpc Off
 
 AddDefaultCharset utf-8
 
