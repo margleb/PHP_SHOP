@@ -706,3 +706,11 @@ Fault: 28-03-2021 7:33:38 - Class core\admin\controllers\EditController does not
 fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
 In line 57
 
+Fault: 30-03-2021 15:22:05 - Неверное имя файла или подключения - core/admin/controllers/EditController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 30-03-2021 15:22:05 - Class core\admin\controllers\EditController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 57
+

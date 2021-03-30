@@ -74,7 +74,7 @@ class Settings
         'price' => ['int' => true], // приводим к числовому типу
         'login' => ['empty' => true, 'trim' => true],
         'password' => ['crypt' => true, 'empty' => true], // поле шифруется
-        'keywords' => ['count' => 7, 'trim' => true],
+        'keywords' => ['count' => 70, 'trim' => true],
         'description' => ['count' => 160, 'trim' => true],
     ];
 

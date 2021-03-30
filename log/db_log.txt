@@ -104,3 +104,23 @@ Fault: 25-03-2021 17:48:05 - Ошибка в SQL запросе: INSERT INTO tea
 fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
 In line 37
 
+Fault: 30-03-2021 14:47:05 - Ошибка в SQL запросе: INSERT INTO teachers (name, visible, menu_position, parent_id, keywords, content, date, datetime, ) VALUES ('Новый учитель','1','1','9','Ключевые','Контент',NOW(), NOW(), ) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Новый учитель','1','1','9','Ключевые','Конте' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 30-03-2021 14:47:53 - Ошибка в SQL запросе: INSERT INTO teachers (name, visible, menu_position, parent_id, keywords, content, date, datetime, ) VALUES ('Новый учитель','1','1','9','Ключевые','Контент',NOW(), NOW(), ) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Новый учитель','1','1','9','Ключевые','Конте' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 30-03-2021 15:11:13 - Ошибка в SQL запросе: INSERT INTO teachers (name, visible, menu_position, parent_id, keywords, content, date, datetime, ) VALUES ('Новый учитель','1','1','9','Ключивики','Конетент',NOW(), NOW(), ) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Новый учитель','1','1','9','Ключивики','Коне' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 30-03-2021 15:14:07 - Ошибка в SQL запросе: INSERT INTO teachers (name, visible, menu_position, parent_id, keywords, content, date, datetime, ) VALUES ('Новый учитель','1','1','9','Ключивики','Контент',NOW(), NOW(), ) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Новый учитель','1','1','9','Ключивики','Конт' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+
+Fault: 30-03-2021 15:15:07 - Ошибка в SQL запросе: INSERT INTO teachers (name, visible, menu_position, parent_id, keywords, content, date, datetime, ) VALUES ('Новый учитель','1','1','9','Ключивики','Контент',NOW(), NOW(), ) - 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ('Новый учитель','1','1','9','Ключивики','Конт' at line 1
+fileE:\OSpanel\domains\im.my\public_html\core\base\models\BaseModel.php
+In line 37
+

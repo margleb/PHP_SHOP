@@ -238,7 +238,7 @@ abstract class BaseModelMethods
                     if(!$check_fields) $insert_arr['fields'] .= $row . ',';
 
                     if(in_array($value, $this->sqlFunc)) {
-                        $insert_arr['values'] .= $value . ', ';
+                        $insert_arr['values'] .= $value . ',';
                     } else if($value == 'NULL' || $value === NULL) {
                         $insert_arr['values'] .= "NULL" . ',';
                     } else {
@@ -274,10 +274,10 @@ abstract class BaseModelMethods
                 foreach($fields as $row => $value) {
                     if($except && in_array($row, $except)) continue;
 
-                    $insert_arr['fields'] .= $row . ', ';
+                    $insert_arr['fields'] .= $row . ',';
 
                     if(in_array($value, $this->sqlFunc)) {
-                        $insert_arr['values'] .= $value . ', ';
+                        $insert_arr['values'] .= $value . ',';
                     } else if($value == 'NULL' || $value === NULL) {
                         $insert_arr['values'] .= "NULL" . ',';
                     } else {
