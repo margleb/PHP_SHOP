@@ -27,6 +27,7 @@ abstract class BaseAdmin extends BaseController
     protected $menu;
     protected $title;
 
+    protected $alias;
     protected $fileArray;
 
     protected $messages;
@@ -363,8 +364,16 @@ abstract class BaseAdmin extends BaseController
     }
 
 
-    protected function checkExceptFields() {
+    protected function checkExceptFields($arr = []) {
+        if(!$arr) $arr = $_POST;
 
+        if($arr) {
+            foreach($arr as $key => $item) {
+                if(!$this->columns[$key]) $except[] = $key;
+            }
+        }
+
+        return $except;
     }
 
     protected function createFile() {
@@ -376,11 +385,67 @@ abstract class BaseAdmin extends BaseController
     }
 
     protected function createAlias($id = false) {
+        if($this->columns['alias']) {
+            if(!$_POST{'alias'}) {
+                if($_POST['name']) {
+                    $alias_str = $this->clearStr($_POST['name']);
+                } else {
+                    foreach($_POST as $key => $item) {
+                        if(strpos($key, 'name') !== false && $item) {
+                            $alias_str = $this->clearStr($item);
+                            break;
+                        }
+                    }
+                }
+            } else {
+                $alias_str = $_POST['alias'] = $this->clearStr($_POST['alias']);
+            }
 
+            $textModify = new \libraries\TextModlify();
+            $alias = $textModify->translit($alias_str);
+            // $alias = 'teacher_111';
+
+            $where['alias'] = $alias;
+            $operand[] = '=';
+
+            if($id) {
+                $where[$this->columns['id_row']] = $alias;
+                $operand[] = '=';
+            }
+
+            $res_alias = $this->model->get($this->table, [
+               'fields' => ['alias'],
+               'where' => $where,
+               'operand' => $operand,
+               'limit' => '1'
+            ])[0];
+
+            if(!$res_alias) {
+                $_POST['alias'] = $alias;
+            } else {
+                $this->alias = $alias;
+                $_POST['alias'] = '';
+            }
+
+            if($_POST['alias'] && $id) {
+                method_exists($this, 'checkOldAlias') && $this->checkOldAlias($id);
+            }
+
+        }
     }
 
     protected function checkAlias($id) {
-
+        if($id) {
+            if($this->alias) {
+                $this->alias .= '-' . $id;
+                $this->model->edit($this->table, [
+                    'fields' => ['alias' => $this->alias],
+                    'where' => [$this->columns['id_row'] => 'id']
+                ]);
+                return true;
+            }
+        }
+        return false;
     }
 
 }
