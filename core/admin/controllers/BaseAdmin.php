@@ -11,6 +11,7 @@ use core\base\controllers\BaseController;
 use core\admin\models\Model;
 use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
+use core\base\settings\ShopSettings;
 
 abstract class BaseAdmin extends BaseController
 {
@@ -188,6 +189,82 @@ abstract class BaseAdmin extends BaseController
                 }
             }
         }
+    }
+
+    protected function checkPost($settings = false) {
+
+        if($this->isPost()) {
+            $this->clearPostFields($settings); // валидирует поля
+            $this->table = $this->clearStr($_POST['table']); // получаем название таблицы
+            unset($_POST['table']);
+
+            if($this->table) {
+                $this->createTableData($settings);
+                $this->editData();
+            }
+        }
+
+    }
+
+
+    // сразу же принимаем ссылку на массив и работаем с ней
+    protected function clearPostFields($settings, &$arr = []) {
+            // когда работаем c $arr мы по факту работаем с тем, что находится в массиве POST
+            if(!$arr) $arr = &$_POST;
+            if(!$settings) $settings = Settings::instance();
+
+            $id = $_POST[$this->columns['id_row']] ?: false;
+
+            $validate = $settings::get('validation');
+            if(!$this->translate) $this->translate = $settings::get('translate');
+
+            foreach($arr as $key => $item) {
+                if(is_array($item)) {
+                    $this->clearPostFields($settings, $item);
+                } else {
+                    if(is_numeric($item)) { // если строка состоит только из чисел
+                        $arr[$key] = $this->clearNum($item);
+                    }
+
+                    if($validate) { // если требуется валидация
+                        if($validate[$key]) {
+                            if($this->translate[$key]) { // если есть перевевод
+                                $answer = $this->translate[$key][0];
+                            } else {
+                                $answer = $key;
+                            }
+
+                            if($validate[$key]['crypt']) {  // если строку необходимо шифоровать
+                                if($id) { // если мы в в позиции редактирования и пустой пароль, то мы его разрегестрируем
+                                    if(empty($item)) {
+                                        unset($arr[$key]);
+                                        continue;
+                                    }
+
+                                    $arr[$key] = md5($item); // кешируем пароль
+
+                                }
+                            }
+
+                            if($validate[$key]['empty']) $this->emptyFields($item, $answer);
+
+                            if($validate[$key]['trim']) $arr[$key] = trim($item);
+
+                            if($validate[$key]['int']) $arr[$key] = $this->clearNum($item);
+
+                            if($validate[$key]['count']) $this->countChar($item, $validate[$key]['count'], $answer);
+
+                        }
+                    }
+
+                }
+            }
+
+            return true;
+    }
+
+    protected function editData() {
+
     }
 
 }

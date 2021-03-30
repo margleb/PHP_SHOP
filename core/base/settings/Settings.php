@@ -66,6 +66,16 @@ class Settings
         'name' => ['Название', 'Не более 100 символов']
     ];
 
+
+    private $validation  = [ // массив для валидации
+        'name' => ['empty' => true, 'trim' => true],
+        'price' => ['int' => true], // приводим к числовому типу
+        'login' => ['empty' => true, 'trim' => true],
+        'password' => ['crypt' => true, 'empty' => true], // поле шифруется
+        'keywords' => ['count' => 70, 'trim' => true],
+        'description' => ['count' => 160, 'trim' => true],
+    ];
+
     private $radio = [
       'visible' => ['Heт', 'Да', 'default' => 'Да']
     ];

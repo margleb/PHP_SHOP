@@ -20,6 +20,8 @@ class AddController extends BaseAdmin
 
         if(!$this->userId) $this->execBase();
 
+        $this->checkPost(); // проверяем пришло ли что нибудь в post
+
         $this->createTableData();
 
         $this->createForeignData();
