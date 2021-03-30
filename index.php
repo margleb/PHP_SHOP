@@ -8,6 +8,8 @@ define('VG_ACCESS', true);
 header('Content-Type:text/html; charset=utf-8');
 session_start(); # суперглобальный массив сессии (файлы на стороне сервера)
 
+// error_reporting(0); // отключение вывода об ошибка (для php 7.2)
+
 require_once 'config.php'; # базовые настройки для быстрого развертывания на хостинге
 require_once 'core/base/settings/internal_settings.php';
 require_once 'libraries/function.php';
@@ -15,6 +17,10 @@ require_once 'libraries/function.php';
 use core\base\exceptions\RouteException;
 use core\base\controllers\RouteController;
 use core\base\exceptions\DbException;
+
+// $s = \core\base\settings\Settings::instance();
+// $s1 = \core\base\settings\ShopSettings::instance();
+// exit;
 
 try {
    RouteController::instance()->route();

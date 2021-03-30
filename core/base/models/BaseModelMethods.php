@@ -165,10 +165,11 @@ abstract class BaseModelMethods
                     $join_fields = [];
 
                     switch(2) {
-                        case count($item['on']['fields']):
+                        // фикс для php 7.2
+                        case (is_array($item['on']['fields']) && count($item['on']['fields'])):
                             $join_fields = $item['on']['fields'];
                             break;
-                        case count($item['on']):
+                        case (is_array($item['on']) && count($item['on'])):
                             $join_fields = $item['on'];
                             break;
                         default:

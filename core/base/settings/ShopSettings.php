@@ -7,7 +7,9 @@ use core\base\settings\Settings;
 class ShopSettings
 {
 
-    use Singleton; # trait singleton
+    use Singleton {
+        instance as traitInstance; // псевдоним
+    }
 
     private $baseSettings;
 
@@ -26,14 +28,14 @@ class ShopSettings
     ];
 
     static public function get($propery) {
-        return self::getInstance()->$propery;
+        return self::instance()->$propery;
     }
 
-    private static function getInstance() {
+    private static function instance() {
         if(self::$_instance instanceof self) {
             return self::$_instance;
         }
-        self::instance()->baseSettings = Settings::instance(); // получаем базовые настройки
+        self::traitInstance()->baseSettings = Settings::instance(); // получаем базовые настройки
         $baseProperties = self::$_instance->baseSettings->clueProperties(get_class()); // соединяем с базовыми настройками
         self::$_instance->setProperty($baseProperties); // записывем в обьект все склеенные свойства
         return self::$_instance;
