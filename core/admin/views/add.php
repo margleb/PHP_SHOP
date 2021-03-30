@@ -6,12 +6,15 @@
                 <div class="vg-element vg-padding-in-px">
                     <input type="submit" class="vg-text vg-firm-color1 vg-firm-background-color4 vg-input vg-button" value="Сохранить">
                 </div>
-                <div class="vg-element vg-padding-in-px">
-                    <a href=""
-                       class="vg-text vg-firm-color1 vg-firm-background-color4 vg-input vg-button vg-center vg_delete">
-                        <span>Удалить</span>
-                    </a>
-                </div>
+                <!-- если не запрещено удаление и есть данные для редактирования -->
+                <?php if(!$this->noDelete && $this->data): ?>
+                    <div class="vg-element vg-padding-in-px">
+                        <a href=""
+                           class="vg-text vg-firm-color1 vg-firm-background-color4 vg-input vg-button vg-center vg_delete">
+                            <span>Удалить</span>
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

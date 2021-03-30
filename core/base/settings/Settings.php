@@ -55,7 +55,7 @@ class Settings
 
     private $templateArr = [ // блоки шаблонов
         'text' => ['name'],
-        'textarea' => ['content'],
+        'textarea' => ['keywords','content'],
         'radio' => ['visible'],
         'select' => ['menu_position', 'parent_id'],
         'img' => ['img'],
@@ -63,7 +63,9 @@ class Settings
     ];
 
     private $translate = [
-        'name' => ['Название', 'Не более 100 символов']
+        'name' => ['Название', 'Не более 100 символов'],
+        'keywords' => ['Ключевые слова', 'Не более 70 символов'],
+        'content' => []
     ];
 
 
@@ -72,7 +74,7 @@ class Settings
         'price' => ['int' => true], // приводим к числовому типу
         'login' => ['empty' => true, 'trim' => true],
         'password' => ['crypt' => true, 'empty' => true], // поле шифруется
-        'keywords' => ['count' => 70, 'trim' => true],
+        'keywords' => ['count' => 7, 'trim' => true],
         'description' => ['count' => 160, 'trim' => true],
     ];
 
@@ -93,6 +95,8 @@ class Settings
     ];
 
     private $expansion = 'core/admin/expansion/';
+
+    private $messages = 'core/base/messages/';
 
     static public function get($propery) {
         return self::instance()->$propery;
