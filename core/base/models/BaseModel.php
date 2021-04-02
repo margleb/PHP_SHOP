@@ -34,9 +34,7 @@ abstract class BaseModel extends BaseModelMethods
 
         # -1 это ошибка сервера
         if($this->db->affected_rows == -1) {
-            throw new DbException('Ошибка в SQL запросе: '
-            . $query . ' - ' . $this->db->errno . ' ' . $this->db->error
-            );
+            // throw new DbException('Ошибка в SQL запросе: ' . $query . ' - ' . $this->db->errno . ' ' . $this->db->error);
         }
 
         switch($crud) {

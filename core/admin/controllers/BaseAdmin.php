@@ -401,7 +401,8 @@ abstract class BaseAdmin extends BaseController
                 $alias_str = $_POST['alias'] = $this->clearStr($_POST['alias']);
             }
 
-            $textModify = new \libraries\TextModlify();
+            // $alias_str = 'подыа';
+            $textModify = new \libraries\TextModify();
             $alias = $textModify->translit($alias_str);
             // $alias = 'teacher_111';
 
@@ -409,8 +410,8 @@ abstract class BaseAdmin extends BaseController
             $operand[] = '=';
 
             if($id) {
-                $where[$this->columns['id_row']] = $alias;
-                $operand[] = '=';
+                $where[$this->columns['id_row']] = $id;
+                $operand[] = '<>';
             }
 
             $res_alias = $this->model->get($this->table, [
