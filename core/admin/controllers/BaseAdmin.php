@@ -427,7 +427,8 @@ abstract class BaseAdmin extends BaseController
                 $this->alias = $alias;
                 $_POST['alias'] = '';
             }
-
+            /* нужно в случае если мы меняем название страницы и не хотим терять ее из индекса браузера
+            создаем заголовок 301 Move Permamently (перемещена постоянно) */
             if($_POST['alias'] && $id) {
                 method_exists($this, 'checkOldAlias') && $this->checkOldAlias($id);
             }
