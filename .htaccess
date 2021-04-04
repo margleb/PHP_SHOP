@@ -1,7 +1,10 @@
 # файл деректив вебсервера apache
+# php_value display_errors 1
+# php_value display_startup_errors 1
+# php_value error_reporting E_ALL 1
 
 php_flag magic_quotes_gpc Off
-php_value upload_max_filesize 100M
+# php_value upload_max_filesize 100M
 
 AddDefaultCharset utf-8
 
