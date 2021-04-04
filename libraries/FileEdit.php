@@ -61,7 +61,42 @@ class FileEdit
 
     protected function createFile($file) {
 
+        $fileNameArr = explode('.', $file['name']);
+        $ext = $fileNameArr[count($fileNameArr) - 1]; // расширение файла
+        unset($fileNameArr[count($fileNameArr) - 1]);
+
+        $fileName = implode('.', $fileNameArr);
+
+        // транслитирируем его
+        $textModify = (new TextModify())->translit($fileName);
+
+        // проверяем есть ли файл
+        $fileName = $this->checkFile($fileName, $ext);
+
+        $fileFullName = $this->directory . $fileName;
+
+        if($this->uploadFile($file['tmp_name'], $fileFullName)) {
+            return $fileName;
+        }
+
+        return false;
+
     }
+
+    protected function uploadFile($tmpName, $dest) {
+        if(move_uploaded_file($tmpName, $dest)) return true;
+        return false;
+    }
+
+    protected function checkFile($fileName, $ext, $fileLastName = '') {
+        if(!file_exists($this->directory . $fileName . $fileLastName . '.' . $ext)) {
+            return $fileName . $fileLastName . '.' . $ext;
+        }
+
+        return $this->checkFile($fileName, $ext, '_' . hash('crc32', time() . mt_rand(1, 1000)));
+
+    }
+
 
     public function getFiles() {
         return $this->imgArr;
