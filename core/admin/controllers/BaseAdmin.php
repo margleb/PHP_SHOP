@@ -12,6 +12,7 @@ use core\admin\models\Model;
 use core\base\exceptions\RouteException;
 use core\base\settings\Settings;
 use core\base\settings\ShopSettings;
+use libraries\FileEdit;
 
 abstract class BaseAdmin extends BaseController
 {
@@ -377,6 +378,8 @@ abstract class BaseAdmin extends BaseController
     }
 
     protected function createFile() {
+        $fileEdit = new FileEdit();
+        $this->fileArray = $fileEdit->addFile();
 
     }
 
