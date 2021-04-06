@@ -55,10 +55,6 @@ class CreateSitemapController extends BaseAdmin
     }
 
     protected function parsing($url, $index = 0) {
-        // если в конце указан слеш, то прекращаем выполнение
-        // для того чтобы в site map не появлялось 2 ссылки с конечным слешем и без него
-        if(mb_strlen(SITE_URL) + 1 == mb_strlen($url) &&
-            mb_strrpos($url, '/') == mb_strlen($url) -1) return;
 
         $curl = curl_init();
         // куда отправлять запросы (url)
@@ -87,7 +83,7 @@ class CreateSitemapController extends BaseAdmin
         // s - многострочный поиск
 
         // ищем только html страницы
-        if(!preg_match("/Content-Type:\s+text\/html/uis", $out)) {
+        if(!preg_match('/Content-Type:\s+text\/html/uis', $out)) {
 
 
             // разрегестрируем ссылку по которой пришли
@@ -113,16 +109,68 @@ class CreateSitemapController extends BaseAdmin
             $_SESSION['res']['answer'] = '<div class="error">Incorrect link in parsing - '. $url . '<br>Sitemap is created</div>';
 
             return;
-        } else {
-            exit('yes');
         }
 
 
+        // \s*? пробель 0 или более раз
+        // [^>]*? любые символы кроме знакак больше
+        // \s*? пробел 0 или более раз
+        // ["\'] двойная либо одинарная ковычка
+        // (.+?) внутри ковычек любыве символы один или более раз
+        // \1 ссылается на переменную (["'])
+        // $str = "<a class=\"class\" id=\"1\" href='href-link' data-id='sdfsdf'>";
+        preg_match_all('/<a\s*?[^>]*?href\s*?=(["\'])(.+?)\1[^>]*?>/ui', $out, $links);
 
+
+        if($links[2]) {
+
+            foreach($links[2] as $link) {
+
+                // если в конце указан слеш, то прекращаем выполнение
+                // для того чтобы в site map не появлялось 2 ссылки с конечным слешем и без него
+                if($link == '/' || $link == SITE_URL . '/') continue;
+
+                foreach($this->fileArr as $ext) {
+                    if($ext) {
+                        // экранируем символы слешей/точки если таковые есть
+                        $ext = addslashes($ext);
+                        $ext = str_replace('.', '\.', $ext);
+
+                        // $ - конец строки
+                        // \s*? пробель 0 или более раз
+
+                        // Если эта ссылка на файл, то нам не нужно добавлять ее в sitemap
+                        if(preg_match('/' . $ext . '\s*?$/ui', $link)) {
+                            continue 2; // прерываем первую и вторую итерацию цикла
+                        }
+                    }
+                }
+
+
+                // относительная или абсолютная ссылка
+                if(strpos($link, '/' == 0)) {
+                    $link = SITE_URL . $link;
+                }
+
+                // если эта ссылка не в массиве linkArr
+                // и link не равна заглушке
+                // если вначале ссылки указан SIT_URL
+                if(!in_array($link, $this->linkArr) && $link !== '#' && strpos($link, SITE_URL) === 0) {
+
+                    // фильтруем ссылку на чпу и get параметры
+                    if($this->filter($link)) {
+                        $this->linkArr[] = $link;
+                        $this->parsing($link, count($this->linkArr) - 1);
+                    }
+
+                }
+            }
+            // exit;
+        }
     }
 
     protected function filter($link) {
-
+        return true;
     }
 
     protected function createSitemap() {
