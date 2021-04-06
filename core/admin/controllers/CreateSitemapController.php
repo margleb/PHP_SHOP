@@ -7,8 +7,6 @@
  */
 
 namespace core\admin\controllers;
-
-
 use core\base\controllers\BaseMethods;
 
 class CreateSitemapController extends BaseAdmin
@@ -21,7 +19,7 @@ class CreateSitemapController extends BaseAdmin
 
     protected $filterArr = [
       'url' => ['order'],
-      'get' => ['masha']
+      'get' => []
     ];
 
     protected function inputData() {
@@ -32,6 +30,11 @@ class CreateSitemapController extends BaseAdmin
             $_SESSION['res']['anwser'] = '<div class="error">Library CURL as apsent. Creation of sitemap impossible</div>';
             $this->redirect();
         }
+
+        if(!$this->userId) $this->execBase();
+
+        // создаем таблицу для парсинга таблиц (нужно в случае если будет валиться сервер
+        if(!$this->checkParsingTable()) return false;
 
         // снимаем ограничение на выполнение скрипта (парсинг занимает много времени)
         set_time_limit(0);
@@ -124,6 +127,9 @@ class CreateSitemapController extends BaseAdmin
 
         if($links[2]) {
 
+            // $links[2] = [];
+            // $links[2][0] = 'http://yandex.ru/image.jpg?ver1.1';
+
             foreach($links[2] as $link) {
 
                 // если в конце указан слеш, то прекращаем выполнение
@@ -140,7 +146,7 @@ class CreateSitemapController extends BaseAdmin
                         // \s*? пробель 0 или более раз
 
                         // Если эта ссылка на файл, то нам не нужно добавлять ее в sitemap
-                        if(preg_match('/' . $ext . '\s*?$/ui', $link)) {
+                        if(preg_match('/' . $ext . '\s*?$|\?[^\/]/ui', $link)) {
                             continue 2; // прерываем первую и вторую итерацию цикла
                         }
                     }
@@ -171,7 +177,8 @@ class CreateSitemapController extends BaseAdmin
 
     protected function filter($link) {
 
-        $link = 'http:://yandex.ru/ord/id?Masha=ASC&amp;sddsad=111';
+        // $link = 'http:://yandex.ru/ord/id?Masha=ASC&amp;sddsad=111';
+        // $link = 'http:://yandex.ru/masha/asc?masha=desc';
 
         if($this->filterArr) {
             foreach($this->filterArr as $type => $values) {
@@ -179,7 +186,7 @@ class CreateSitemapController extends BaseAdmin
                     foreach($values as $item) {
                         $item = str_replace('/', '\/', addslashes($item));
                         if($type == 'url') {
-                            if(preg_match('/' . $item . '.*[\?|$]/ui', $link)) {
+                            if(preg_match('/^[^\?]*' . $item . '/ui', $link)) {
                                 return false;
                             }
                         }
@@ -194,6 +201,17 @@ class CreateSitemapController extends BaseAdmin
             }
         }
 
+        return true;
+    }
+
+    protected function checkParsingTable() {
+        $tables = $this->model->showTables();
+        if(!in_array('parsing_data', $tables)) {
+            $query = 'CREATE TABLE parsing_data (all_links text, temp_links text)';
+            if(!$this->model->query($query, 'c') ||
+                !$this->model->add('parsing_data', ['fields' => ['all_links' => '', 'temp_links' => '']])
+            ){return false;}
+        }
         return true;
     }
 
