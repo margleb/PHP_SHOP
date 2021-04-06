@@ -62,3 +62,27 @@ Fault: 06-04-2021 8:23:01 - Class core\user\controllers\UserfilesController does
 fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
 In line 57
 
+Fault: 06-04-2021 9:29:33 - Неверное имя файла или подключения - core/user/controllers/UserfilesController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 06-04-2021 9:29:34 - Class core\user\controllers\UserfilesController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 57
+
+Fault: 06-04-2021 9:29:34 - Неверное имя файла или подключения - core/user/controllers/UserfilesController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 06-04-2021 9:29:34 - Class core\user\controllers\UserfilesController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 57
+
+Fault: 06-04-2021 9:29:36 - Неверное имя файла или подключения - core/user/controllers/UserfilesController
+fileE:\OSpanel\domains\im.my\public_html\core\base\settings\internal_settings.php
+In line 42
+
+Fault: 06-04-2021 9:29:36 - Class core\user\controllers\UserfilesController does not exist
+fileE:\OSpanel\domains\im.my\public_html\core\base\controllers\BaseController.php
+In line 57
+

@@ -20,8 +20,8 @@ class CreateSitemapController extends BaseAdmin
     protected $fileArr = ['jpg', 'png', 'jpeg', 'gif', 'xls', 'xlsx', 'pdf', 'mp4', 'mpeg', 'mp3'];
 
     protected $filterArr = [
-      'url' => [],
-      'get' => []
+      'url' => ['order'],
+      'get' => ['masha']
     ];
 
     protected function inputData() {
@@ -170,6 +170,30 @@ class CreateSitemapController extends BaseAdmin
     }
 
     protected function filter($link) {
+
+        $link = 'http:://yandex.ru/ord/id?Masha=ASC&amp;sddsad=111';
+
+        if($this->filterArr) {
+            foreach($this->filterArr as $type => $values) {
+                if($values) {
+                    foreach($values as $item) {
+                        $item = str_replace('/', '\/', addslashes($item));
+                        if($type == 'url') {
+                            if(preg_match('/' . $item . '.*[\?|$]/ui', $link)) {
+                                return false;
+                            }
+                        }
+
+                        if($type === 'get') {
+                           if(preg_match('/(\?|&amp;|=|&)'. $item . '(=|&amp;|&|$)/ui', $link, $matches)) {
+                               return false;
+                           }
+                        }
+                    }
+                }
+            }
+        }
+
         return true;
     }
 
