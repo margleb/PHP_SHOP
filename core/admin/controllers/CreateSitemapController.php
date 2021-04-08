@@ -117,19 +117,65 @@ class CreateSitemapController extends BaseAdmin
 
     }
 
-    protected function parsing($url, $index = 0) {
+    protected function parsing($urls) {
 
-        $curl = curl_init();
-        // куда отправлять запросы (url)
-        curl_setopt($curl, CURLOPT_URL, $url);
-        // нужны ли ответы с сервера
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        // возращать ли заголовки
-        curl_setopt($curl, CURLOPT_HEADER, true);
-        // следовать ли curl за редиректами
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-        // ожидание ответа сервера
-        curl_setopt($curl, CURLOPT_TIMEOUT, 120);
+        if(!$urls) return; // перестраховка проблемы с памятью
+
+        $curlMultiply = curl_multi_init(); // дескриптор многопоточности
+
+        $curl = [];
+
+        foreach($urls as $i => $url) {
+
+            $curl[$i] = curl_init();
+            // куда отправлять запросы (url)
+            curl_setopt($curl[$i], CURLOPT_URL, $url);
+            // нужны ли ответы с сервера
+            curl_setopt($curl[$i], CURLOPT_RETURNTRANSFER, true);
+            // возращать ли заголовки
+            curl_setopt($curl[$i], CURLOPT_HEADER, true);
+            // следовать ли curl за редиректами
+            curl_setopt($curl[$i], CURLOPT_FOLLOWLOCATION, 1);
+            // ожидание ответа сервера
+            curl_setopt($curl[$i], CURLOPT_TIMEOUT, 120);
+            // раскодируем страницу сжатую в gzip
+            curl_setopt($curl[$i], CURLOPT_ENCODING, 'gzip,deflate');
+
+            // добавляет обычный cURL-дескриптор к набору cURL-дескрипторов
+            curl_multi_add_handle($curlMultiply, $curl[$i]);
+
+        }
+
+        do{
+
+            $status = curl_multi_exec($curlMultiply, $active);
+            $info = curl_multi_info_read($curlMultiply); // ошибка
+
+            if(false !== $info) {
+                if($info['result'] !== 0) {
+                    $i = array_search($info['handle'], $curl);
+                    // номер и текст ошибки
+                    $err = curl_errno($curl[$i]);
+                    $message = curl_error($curl[$i]);
+                    $handler = curl_getinfo($curl[$i]); // массив с настройками curl
+
+                    if($err != 0) {
+                        $this->cancel(0,
+                            'Error loading ' . $handler['url'] .
+                            'http code: ' . $handler['http_code'] .
+                            'error: ' . $err . ' message' . $message);
+                    }
+
+                }
+            }
+
+            if($status > 0) {
+                // еще один вариант ошибки
+                $this->cancel(0, curl_multi_strerror($status));
+            }
+
+        } while($status === CURLM_CALL_MULTI_PERFORM || $active); // соль
+
         // ограничием обьем данных для загрузки curl
         curl_setopt($curl, CURLOPT_RANGE, 0 - 4194304);
 
