@@ -56,14 +56,14 @@ class CreateSitemapController extends BaseAdmin
         $reserve = $this->model->get('parsing_data')[0];
 
         foreach($reserve as $name => $item) {
-
             if($item) $this->$name = json_decode($item);
             else $this->$name = [SITE_URL];
-
         }
 
         // количество собираемых ссылок за парсинг
         $this->maxLinks = (int)$link_counter > 1 ? ceil($this->maxLinks / $link_counter) : $this->maxLinks;
+
+
 
         while($this->temp_links) {
             $temp_links_count = count($this->temp_links);
@@ -81,7 +81,7 @@ class CreateSitemapController extends BaseAdmin
                     if($links) {
                         $this->model->edit('parsing_data', [
                             'fields' => [
-                                'temp_link' => json_encode(array_merge(...$links)),
+                                'temp_links' => json_encode(array_merge(...$links)),
                                 'all_links' => json_encode($this->all_links)
                             ]
                         ]);
@@ -93,12 +93,19 @@ class CreateSitemapController extends BaseAdmin
 
             $this->model->edit('parsing_data', [
                 'fields' => [
-                    'temp_link' => json_encode($this->temp_links),
+                    'temp_links' => json_encode($this->temp_links),
                     'all_links' => json_encode($this->all_links)
                 ]
             ]);
-
         }
+
+        // очищаем таблицу при следующем вызове парсера
+        $this->model->edit('parsing_data', [
+            'fields' => [
+                'temp_links' => '',
+                'all_links' => ''
+            ]
+        ]);
 
         // создам sitemap
         $this->createSitemap();
@@ -188,6 +195,8 @@ class CreateSitemapController extends BaseAdmin
                 // для того чтобы в site map не появлялось 2 ссылки с конечным слешем и без него
                 if($link == '/' || $link == SITE_URL . '/') continue;
 
+                // $link = 'http:://yandex.ru/image.png';
+
                 foreach($this->fileArr as $ext) {
                     if($ext) {
                         // экранируем символы слешей/точки если таковые есть
@@ -198,7 +207,7 @@ class CreateSitemapController extends BaseAdmin
                         // \s*? пробель 0 или более раз
 
                         // Если эта ссылка на файл, то нам не нужно добавлять ее в sitemap
-                        if(preg_match('/' . $ext . '\s*?$|\?[^\/]/ui', $link)) {
+                        if(preg_match('/' . $ext . '(\s*?$|\?[^\/]*$)/ui', $link)) {
                             continue 2; // прерываем первую и вторую итерацию цикла
                         }
                     }
@@ -210,10 +219,14 @@ class CreateSitemapController extends BaseAdmin
                     $link = SITE_URL . $link;
                 }
 
+
+                $site_url = mb_str_replace('.', '\.',
+                    mb_str_replace('/', '\/', SITE_URL));
+
                 // если эта ссылка не в массиве all_links
                 // и link не равна заглушке
                 // если вначале ссылки указан SIT_URL
-                if(!in_array($link, $this->all_links) && $link !== '#' && strpos($link, SITE_URL) === 0) {
+                if(!in_array($link, $this->all_links) && !preg_match('/^('. $site_url .')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) === 0) {
 
                     // фильтруем ссылку на чпу и get параметры
                     if($this->filter($link)) {
