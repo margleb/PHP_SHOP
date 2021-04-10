@@ -21,7 +21,7 @@ class CreateSitemapController extends BaseAdmin
     protected $fileArr = ['jpg', 'png', 'jpeg', 'gif', 'xls', 'xlsx', 'pdf', 'mp4', 'mpeg', 'mp3'];
 
     protected $filterArr = [
-      'url' => [],
+      'url' => ['order', 'page'],
       'get' => []
     ];
 
@@ -107,6 +107,13 @@ class CreateSitemapController extends BaseAdmin
             ]
         ]);
 
+
+        if($this->all_links) {
+            foreach($this->all_links as $key => $link) {
+                if(!$this->filter($link)) unset($this->all_links[$key]);
+            }
+        }
+
         // создам sitemap
         $this->createSitemap();
 
@@ -176,113 +183,98 @@ class CreateSitemapController extends BaseAdmin
 
         } while($status === CURLM_CALL_MULTI_PERFORM || $active); // соль
 
-        // ограничием обьем данных для загрузки curl
-        curl_setopt($curl, CURLOPT_RANGE, 0 - 4194304);
 
-        // инициализируем curl
-        $out = curl_exec($curl);
+        $result = [];
+        // возращаем результат из multicurl
+        foreach($urls as $i => $url) {
+            $result[$i] = curl_multi_getcontent($curl[$i]);
+            curl_multi_remove_handle($curlMultiply, $curl[$i]);
+            curl_close($curl[$i]);
 
-        // останавливаем curl
-        curl_close($curl);
+            // ищем только html страницы
+            if(!preg_match('/Content-Type:\s+text\/html/uis', $result[$i])) {
+                $this->cancel(0, 'Incorrect content type ' . $url);
+                continue;
+            }
 
-        // echo('CURL SUCCESS');
-        // exit($out);
+            // проверяем что код ответа от 200 и более
+            if(!preg_match('/HTTP\/\d.?\d?\s+20\d/uis', $result[$i])) {
+                $this->cancel(0, 'Incorrect server code ' . $url);
+                continue;
+            }
 
-        // разбираем заголовки
-        // s - многострочный поиск
+            $this->createLinks($result[$i]);
 
-        // ищем только html страницы
-        if(!preg_match('/Content-Type:\s+text\/html/uis', $out)) {
-
-
-            // разрегестрируем ссылку по которой пришли
-            unset($this->all_links[$index]);
-
-            // выставляем заново нумерацию ключей
-            $this->all_links = array_values($this->all_links);
-
-            return;
         }
 
-        // проверяем что код ответа от 200 и более
-        if(!preg_match('/HTTP\/\d.?\d?\s+20\d/uis', $out)) {
-            $this->writeLog('Не корректная ссылка при парсине - ' . $url, $this->parsingLogFile);
-
-            // разрегестрируем ссылку по которой пришли
-            unset($this->all_links[$index]);
-
-            // выставляем заново нумерацию ключей
-            $this->all_links = array_values($this->all_links);
-
-            $_SESSION['res']['answer'] = '<div class="error">Incorrect link in parsing - '. $url . '<br>Sitemap is created</div>';
-
-            return;
-        }
+        // завершаем мультипотоковое соединение
+        curl_multi_close($curlMultiply);
 
 
-        // \s*? пробель 0 или более раз
-        // [^>]*? любые символы кроме знакак больше
-        // \s*? пробел 0 или более раз
-        // ["\'] двойная либо одинарная ковычка
-        // (.+?) внутри ковычек любыве символы один или более раз
-        // \1 ссылается на переменную (["'])
-        // $str = "<a class=\"class\" id=\"1\" href='href-link' data-id='sdfsdf'>";
-        preg_match_all('/<a\s*?[^>]*?href\s*?=(["\'])(.+?)\1[^>]*?>/ui', $out, $links);
+    }
+
+    protected function createLinks($content) {
+        if($content) {
+
+            // \s*? пробель 0 или более раз
+            // [^>]*? любые символы кроме знакак больше
+            // \s*? пробел 0 или более раз
+            // ["\'] двойная либо одинарная ковычка
+            // (.+?) внутри ковычек любыве символы один или более раз
+            // \1 ссылается на переменную (["'])
+            // $str = "<a class=\"class\" id=\"1\" href='href-link' data-id='sdfsdf'>";
+            preg_match_all('/<a\s*?[^>]*?href\s*?=(["\'])(.+?)\1[^>]*?>/ui', $content, $links);
 
 
-        if($links[2]) {
+            if($links[2]) {
 
-            // $links[2] = [];
-            // $links[2][0] = 'http://yandex.ru/image.jpg?ver1.1';
+                // $links[2] = [];
+                // $links[2][0] = 'http://yandex.ru/image.jpg?ver1.1';
 
-            foreach($links[2] as $link) {
+                foreach($links[2] as $link) {
 
-                // если в конце указан слеш, то прекращаем выполнение
-                // для того чтобы в site map не появлялось 2 ссылки с конечным слешем и без него
-                if($link == '/' || $link == SITE_URL . '/') continue;
+                    // если в конце указан слеш, то прекращаем выполнение
+                    // для того чтобы в site map не появлялось 2 ссылки с конечным слешем и без него
+                    if($link == '/' || $link == SITE_URL . '/') continue;
 
-                // $link = 'http:://yandex.ru/image.png';
+                    // $link = 'http:://yandex.ru/image.png';
 
-                foreach($this->fileArr as $ext) {
-                    if($ext) {
-                        // экранируем символы слешей/точки если таковые есть
-                        $ext = addslashes($ext);
-                        $ext = str_replace('.', '\.', $ext);
+                    foreach($this->fileArr as $ext) {
+                        if($ext) {
+                            // экранируем символы слешей/точки если таковые есть
+                            $ext = addslashes($ext);
+                            $ext = str_replace('.', '\.', $ext);
 
-                        // $ - конец строки
-                        // \s*? пробель 0 или более раз
+                            // $ - конец строки
+                            // \s*? пробель 0 или более раз
 
-                        // Если эта ссылка на файл, то нам не нужно добавлять ее в sitemap
-                        if(preg_match('/' . $ext . '(\s*?$|\?[^\/]*$)/ui', $link)) {
-                            continue 2; // прерываем первую и вторую итерацию цикла
+                            // Если эта ссылка на файл, то нам не нужно добавлять ее в sitemap
+                            if(preg_match('/' . $ext . '(\s*?$|\?[^\/]*$)/ui', $link)) {
+                                continue 2; // прерываем первую и вторую итерацию цикла
+                            }
                         }
                     }
-                }
 
 
-                // относительная или абсолютная ссылка
-                if(strpos($link, '/' == 0)) {
-                    $link = SITE_URL . $link;
-                }
-
-
-                $site_url = mb_str_replace('.', '\.',
-                    mb_str_replace('/', '\/', SITE_URL));
-
-                // если эта ссылка не в массиве all_links
-                // и link не равна заглушке
-                // если вначале ссылки указан SIT_URL
-                if(!in_array($link, $this->all_links) && !preg_match('/^('. $site_url .')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) === 0) {
-
-                    // фильтруем ссылку на чпу и get параметры
-                    if($this->filter($link)) {
-                        $this->all_links[] = $link;
-                        $this->parsing($link, count($this->all_links) - 1);
+                    // относительная или абсолютная ссылка
+                    if(strpos($link, '/' == 0)) {
+                        $link = SITE_URL . $link;
                     }
 
+
+                    $site_url = mb_str_replace('.', '\.',
+                        mb_str_replace('/', '\/', SITE_URL));
+
+                    // если эта ссылка не в массиве all_links
+                    // и link не равна заглушке
+                    // если вначале ссылки указан SIT_URL
+                    if(!in_array($link, $this->all_links) && !preg_match('/^('. $site_url .')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) === 0) {
+                        $this->temp_links[] = $link;
+                        $this->temp_links[] = $link;
+                    }
                 }
+                // exit;
             }
-            // exit;
         }
     }
 
