@@ -7,14 +7,7 @@
     <meta type="description" content="...">
     <title>Document</title>
 
-    <?php foreach($this->styles as $style): ?>
-        <link rel="stylesheet" href="<?php echo $style ?>">
-    <?php endforeach; ?>
-
-    <?php foreach($this->styles as $style): ?>
-        <link rel="stylesheet" href="<?php echo $style ?>">
-    <?php endforeach; ?>
-
+    <?php $this->getStyles() ?>
 
 </head>
 <body>

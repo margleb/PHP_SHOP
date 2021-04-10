@@ -22,7 +22,7 @@ const QTY_LINKS = 3; # количество ссылок постранично�
 # пути к css и javascript файлам административной части сайта
 const ADMIN_CSS_JS = [
     'styles' => ['css/main.css'],
-    'scripts' => []
+    'scripts' => ['js/frameworkfunctions.js', 'js/scripts.js']
 ];
 
 # пути к css и javascript файлам пользовательской части сайта

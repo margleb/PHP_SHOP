@@ -15,7 +15,7 @@ require_once 'core/base/settings/internal_settings.php';
 require_once 'libraries/function.php';
 
 use core\base\exceptions\RouteException;
-use core\base\controllers\RouteController;
+use core\base\controllers\BaseRoute;
 use core\base\exceptions\DbException;
 
 // $s = \core\base\settings\Settings::instance();
@@ -23,7 +23,7 @@ use core\base\exceptions\DbException;
 // exit;
 
 try {
-   RouteController::instance()->route();
+    BaseRoute::routeDirection();
 } catch(RouteException $e) {
     exit($e->getMessage());
 } catch(DbException $e) {

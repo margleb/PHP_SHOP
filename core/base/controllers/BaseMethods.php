@@ -43,6 +43,18 @@ trait BaseMethods
         exit;
     }
 
+    protected function getStyles() {
+      if($this->styles) {
+          foreach($this->styles as $style) echo '<link rel="stylesheet" href="'. $style .'">';
+      }
+    }
+
+    protected function getScripts() {
+        if($this->scripts) {
+            foreach($this->scripts as $script) echo '<link src="'. $script .'"></script>';
+        }
+    }
+
     protected function writeLog($message, $file = 'log.txt', $event = 'Fault') {
         $dateTime = new \DateTime(); // обьект текущей метки времени
         $str = $event .  ': ' . $dateTime->format('d-m-Y G:i:s') . ' - ' . $message . "\r\n";
