@@ -340,6 +340,51 @@ class CreateSitemapController extends BaseAdmin
 
     protected function createSitemap() {
 
+        $dom = new \domDocument('1.0', 'utf-8');
+        $dom->formatOutput = true; // форматирования выходных данных
+
+        // 1. Cоздаем корневой элемент urlset
+        $root = $dom->createElement('urlset');
+        $root->setAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+        $root->setAttribute('xmlns:xls', 'http://w3.org/2001/XMLSchema-instance');
+        $root->setAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd');
+        $dom->appendChild($root);
+
+        // 2. Формируем dom
+        $sxe = simplexml_import_dom($dom);
+
+        // Y - полный год/ y - последние 2 цифры
+        $date = new \DateTime();
+        $lastMod = $date->format('Y-m-d') . 'T' . $date->format('H:i:s+01:00');
+
+        if($this->all_links) {
+            foreach($this->all_links as $item) {
+
+                $elem = trim(mb_substr($item, mb_strlen(SITE_URL)), '/');
+                $elem = explode('/', $elem);
+                $count = '0.' . (count($elem) - 1);
+                // 3. записываем уровень приоритета в xml в зависимости от глубины деритории
+                $priority = 1 - (float)$count;
+                // если приоритет у нас 0, то записываем 1.0
+                if($priority == 1) $priority = '1.0';
+
+                // 4. добавляем url в dom
+                $urlMain = $sxe->addChild('url');
+                // 5. добавляем тег loc в url
+                $urlMain->addChild('loc', htmlspecialchars($item));
+                // 6. добавляем дату в корректом формате
+                $urlMain->addChild('lastmod', $lastMod);
+                // 7. указываем как часто обновлять ссылку
+                $urlMain->addChild('changefreq', 'weekly');
+                // 9. указываем приоритет
+                $urlMain->addChild('priority', $priority);
+
+            }
+        }
+
+        // 10. сохраняем файл
+        $dom->save($_SERVER['DOCUMENT_ROOT'] . PATH . 'sitemap.xml');
+
     }
 
 }
