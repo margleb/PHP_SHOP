@@ -51,7 +51,7 @@ trait BaseMethods
 
     protected function getScripts() {
         if($this->scripts) {
-            foreach($this->scripts as $script) echo '<link src="'. $script .'"></script>';
+            foreach($this->scripts as $script) echo '<script src="'. $script .'"></script>';
         }
     }
 
