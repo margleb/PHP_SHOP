@@ -22,8 +22,6 @@ use core\base\exceptions\DbException;
 // $s1 = \core\base\settings\ShopSettings::instance();
 // exit;
 
-if($_POST) exit('AJAX');
-
 try {
     BaseRoute::routeDirection();
 } catch(RouteException $e) {

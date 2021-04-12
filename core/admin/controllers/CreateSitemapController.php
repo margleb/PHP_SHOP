@@ -25,7 +25,10 @@ class CreateSitemapController extends BaseAdmin
       'get' => []
     ];
 
-    protected function inputData($link_counter = 1) {
+    public function inputData($link_counter = 1, $redirect = true) {
+
+
+        $links_counter = $this->clearNum($link_counter);
 
         // проверяем установлена ли библиотека curl для парсинга
         if(!function_exists('curl_init')) {
@@ -63,7 +66,8 @@ class CreateSitemapController extends BaseAdmin
         // количество собираемых ссылок за парсинг
         $this->maxLinks = (int)$link_counter > 1 ? ceil($this->maxLinks / $link_counter) : $this->maxLinks;
 
-
+//        if($link_counter == 1) $lk = 1;
+//        else $lk = 0;
 
         while($this->temp_links) {
             $temp_links_count = count($this->temp_links);
@@ -77,6 +81,9 @@ class CreateSitemapController extends BaseAdmin
 
                 for($i = 0; $i < $count_chunks; $i++) {
                     $this->parsing($links[$i]);
+
+                   // if($lk === 3 ) $this->hahah();
+
                     unset($links[$i]);
                     if($links) {
                         $this->model->edit('parsing_data', [
@@ -86,9 +93,12 @@ class CreateSitemapController extends BaseAdmin
                             ]
                         ]);
                     }
+
+                    // if($lk === 2) $lk = 3;
                 }
             } else {
                 $this->parsing($links);
+                // $lk && $lk = 2;
             }
 
             $this->model->edit('parsing_data', [
@@ -99,7 +109,7 @@ class CreateSitemapController extends BaseAdmin
             ]);
         }
 
-        // очищаем таблицу при следующем вызове парсера
+        //  очищаем таблицу при следующем вызове парсера
         $this->model->edit('parsing_data', [
             'fields' => [
                 'temp_links' => '',
@@ -117,10 +127,16 @@ class CreateSitemapController extends BaseAdmin
         // создам sitemap
         $this->createSitemap();
 
-        // выводим сообщеине об успешно сосзданном sitemap
-        !$_SESSION['res']['answer'] && $_SESSION['res']['answer'] = '<div class="success">Sitemap is created</div>';
+        if($redirect) {
+            // выводим сообщеине об успешно сосзданном sitemap
+            !$_SESSION['res']['answer'] && $_SESSION['res']['answer'] = '<div class="success">Sitemap is created</div>';
+            $this->redirect();
 
-        $this->redirect();
+        } else {
+            $this->cancel(1,
+                'Sitemap is created! ' . count($this->all_links) . ' links',
+                '', true);
+        }
 
     }
 
@@ -268,9 +284,9 @@ class CreateSitemapController extends BaseAdmin
                     // если эта ссылка не в массиве all_links
                     // и link не равна заглушке
                     // если вначале ссылки указан SIT_URL
-                    if(!in_array($link, $this->all_links) && !preg_match('/^('. $site_url .')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) === 0) {
+                    if(!in_array($link, $this->all_links) && !preg_match('/^('. $site_url .')?\/?#[^\/]*?$/ui', $link) && strpos($link, SITE_URL) == 0) {
                         $this->temp_links[] = $link;
-                        $this->temp_links[] = $link;
+                        $this->all_links[] = $link;
                     }
                 }
                 // exit;
@@ -310,7 +326,7 @@ class CreateSitemapController extends BaseAdmin
     protected function checkParsingTable() {
         $tables = $this->model->showTables();
         if(!in_array('parsing_data', $tables)) {
-            $query = 'CREATE TABLE parsing_data (all_links text, temp_links text)';
+            $query = 'CREATE TABLE parsing_data (all_links longtext, temp_links longtext)';
             if(!$this->model->query($query, 'c') ||
                 !$this->model->add('parsing_data', ['fields' => ['all_links' => '', 'temp_links' => '']])
             ){return false;}

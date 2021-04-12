@@ -27,8 +27,10 @@ class BaseAjax extends BaseController
             $controller = $route['admin']['path']. 'AjaxController';
         }
 
+        $controller = str_replace('/', '\\', $controller);
         $ajax = new $controller;
-        $ajax->createAjaxData();
+
+        $ajax->createAjaxData($data);
 
         return ($ajax->ajax());
 

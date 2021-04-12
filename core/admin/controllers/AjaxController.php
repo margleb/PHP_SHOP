@@ -13,6 +13,16 @@ use core\base\controllers\BaseAjax;
 class AjaxController extends BaseAjax
 {
     public function ajax() {
-        return 'ADMIN AJAX';
+
+        if(isset($this->data['ajax'])) {
+            switch($this->data['ajax']) {
+                case 'sitemap':
+                    return (new CreateSitemapController())->inputData($this->data['links_counter'], false);
+                break;
+            }
+        }
+
+        return json_encode(['success' => '0', 'messages' => 'No ajax variable']);
+
     }
 }
