@@ -11,7 +11,7 @@ const ADMIN_TEMPLATE = 'core/admin/views/'; # шаблоны администр�
 const UPLOAD_DIR = 'userfiles/'; # дерриктория для загрузки изображений
 
 const COOKIE_VERSION = '1.0.0'; # версия cookie файлов
-const CRYPT_KEY = ''; # ключ алгоритма шифоравания
+const CRYPT_KEY = '2r5u8x/A?D(G+KbPjWnZr4u7x!A%D*G-QeThWmZq4t7w!z%C+MbQeShVmYq3t6w9D(G+KbPeSgVkYp3s!A%D*G-KaPdRgUkXt7w!z%C*F-JaNdRfYq3t6w9z$C&F)J@N'; # ключ алгоритма шифоравания
 const COOKIE_TIME = 60; # время бездействия пользователя
 const BLOCK_TIME = 3; # время блокировки пользователя, попытавшего подобрать пароль
 

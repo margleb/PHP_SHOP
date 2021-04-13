@@ -384,7 +384,7 @@ class CreateSitemapController extends BaseAdmin
         $root = $dom->createElement('urlset');
         $root->setAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
         $root->setAttribute('xmlns:xls', 'http://w3.org/2001/XMLSchema-instance');
-        $root->setAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd');
+        $root->setAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd');
         $dom->appendChild($root);
 
         // 2. Формируем dom
