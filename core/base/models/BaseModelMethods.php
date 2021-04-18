@@ -452,4 +452,17 @@ abstract class BaseModelMethods
         return $join_arr;
     }
 
+    protected function createTableAlias($table) {
+        $arr = [];
+        if(preg_match('/\s+/i', $table)) {
+            $table = preg_replace('/\s{2,}/i', ' ', $table);
+            $table_name = explode(' ', $table);
+            $arr['table'] = trim($table_name[0]);
+            $arr['alias'] = trim($table_name[1]);
+        } else {
+            $arr['alias'] = $arr['table'] = $table;
+        }
+        return $arr;
+    }
+
 }
