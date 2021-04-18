@@ -17,6 +17,9 @@ class IndexController extends BaseController {
 
      $model  = Model::instance();
 
+     // $arr['fields'] = false;
+     // $a = isset($arr['fields']) ? 1 : 2;
+
      $res = $model->get('goods', [
          'where' => ['id' => '27, 28'],
          'operand' => ['IN'],
