@@ -43,7 +43,7 @@ class Settings
         ],
     ];
 
-    private $defaultTable = 'teachers';
+    private $defaultTable = 'goods';
 
     // путь к шаблонам
     private $formTemplates = PATH . 'core/admin/views/include/form_templates/';
@@ -57,6 +57,7 @@ class Settings
         'text' => ['name'],
         'textarea' => ['keywords','content'],
         'radio' => ['visible'],
+        'checkboxlist' => ['filters'],
         'select' => ['menu_position', 'parent_id'],
         'img' => ['img'],
         'gallery_img' => ['gallery_img']
@@ -86,6 +87,10 @@ class Settings
         'name' => 'Корневая',
         // 'tables' => ['teachers', 'articles']
         'tables' => ['articles']
+    ];
+
+    private $manyToMany = [
+      'goods_filter' => ['goods', 'filters'] // 'type' => 'child' || 'root'
     ];
 
     private $blockNeedle = [
