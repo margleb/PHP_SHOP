@@ -36,7 +36,7 @@ abstract class BaseModelMethods
                 $fields = $concat_table . '*,';
             } else {
                 foreach($this->tableRows[$table] as $key => $item) {
-                    if(!$key !== 'id_row' && $key !== 'multi_id_row') {
+                    if($key !== 'id_row' && $key !== 'multi_id_row') {
                         $fields .= $concat_table . $key . ' as TABLE' . $table . 'TABLE_' . $key . ',';
                     }
                 }
@@ -49,17 +49,22 @@ abstract class BaseModelMethods
                     $id_field = true;
                 }
                 if($field) {
-                    if($join && $join_structure && !preg_match('/\s+as\s+/i', $field)) {
-                        $fields .= $concat_table . $field . ' as TABLE' . $table . 'TABLE_' . $field . ',';
+                    if($join && $join_structure) {
+                        if(preg_match('/^(.+)?\s+as\s+(.+)/i', $field, $matches)) {
+                            $fields .= $concat_table . $matches[1] . ' as TABLE' . $table . 'TABLE_' . $matches[2] . ',';
+                        } else {
+                            $fields .= $concat_table . $field . ' as TABLE' . $table . 'TABLE_' . $field . ',';
+                        }
+
                     } else {
-                        $field .= $concat_table . $field . ',';
+                        $fields .= $concat_table . $field . ',';
                     }
                 }
             }
             if(!$id_field && $join_structure) {
 
                 if($join) {
-                    $fields .= $concat_table . $this->tableRows[$table]['id_row'] . 'as TABLE' . $table . 'TABLE_' .  $this->tableRows[$table]['id_row'] . ',';
+                    $fields .= $concat_table . $this->tableRows[$table]['id_row'] . ' as TABLE' . $table . 'TABLE_' .  $this->tableRows[$table]['id_row'] . ',';
 
                 } else {
 
@@ -391,6 +396,60 @@ abstract class BaseModelMethods
 
     protected function joinStructure($res, $table) {
 
+        $join_arr = [];
+
+        $id_row = $this->tableRows[$table]['id_row'];
+
+        foreach($res as $value) {
+            if($value) {
+
+                if(!isset($join_arr[$value[$id_row]])) $join_arr[$value[$id_row]] = [];
+
+                foreach($value as $key => $item) {
+
+                    // 2. Если это уникальный ключ
+                    if(preg_match('/TABLE(.+)?TABLE/u', $key, $matches)) {
+
+                        $table_name_normal = $matches[1];
+
+                        // 4. создаем уникальный ключ в зависимости от составной он или нет
+                        if(!isset($this->tableRows[$table_name_normal]['multi_id_row'])) {
+
+                            $join_id_row = $value[$matches[0] . '_' . $this->tableRows[$table_name_normal]['id_row']];
+
+                        } else {
+
+                            $join_id_row = '';
+
+                            foreach($this->tableRows[$table_name_normal]['multi_id_row'] as $multi) {
+
+                                $join_id_row .= $value[$matches[0] . '_' . $multi];
+
+                            }
+
+                        }
+
+                        $row = preg_replace('/TABLE(.+)TABLE_/u', '', $key);
+
+                        if($join_id_row && !isset($join_arr[$value[$id_row]]['join'][$table_name_normal][$join_id_row][$row])) {
+                            // 3. создаем join вложенность
+                            $join_arr[$value[$id_row]]['join'][$table_name_normal][$join_id_row][$row] = $item;
+
+                        }
+
+                        continue;
+
+                    }
+
+
+                    // 1. Вкладываем индентитификатор и (ключ - значение)
+                    $join_arr[$value[$id_row]][$key] = $item;
+
+                }
+            }
+        }
+
+        return $join_arr;
     }
 
 }
