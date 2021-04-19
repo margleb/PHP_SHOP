@@ -49,8 +49,8 @@ class Settings
     private $formTemplates = PATH . 'core/admin/views/include/form_templates/';
 
     private $projectTables = [
-        'teachers' => ['name' => 'Учителя', 'img' => 'pages.png'],
-        'students' => ['name' => 'Ученики']
+        'goods' => ['name' => 'Товары', 'img' => 'pages.png'],
+        'filters' => ['name' => 'Фильтры']
     ];
 
     private $templateArr = [ // блоки шаблонов
@@ -90,7 +90,7 @@ class Settings
     ];
 
     private $manyToMany = [
-      'goods_filter' => ['goods', 'filters'] // 'type' => 'child' || 'root'
+      'goods_filters' => ['goods', 'filters'] // 'type' => 'child' || 'root'
     ];
 
     private $blockNeedle = [

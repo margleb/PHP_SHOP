@@ -32,6 +32,8 @@ class AddController extends BaseAdmin
 
         $this->createOutputData();
 
+        $this->createManyToMany();
+
 //        $this->data = [
 //            'name' => 'Masha',
 //            'keywords' => 'Ключевики',
