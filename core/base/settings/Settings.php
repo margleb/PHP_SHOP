@@ -6,7 +6,6 @@ use core\base\controllers\Singleton;
 class Settings
 {
 
-
     use Singleton; # трейд Singleton
 
     private $routes = [
@@ -90,7 +89,7 @@ class Settings
     ];
 
     private $manyToMany = [
-      'goods_filters' => ['goods', 'filters'] // 'type' => 'child' || 'root'
+      'goods_filters' => ['goods', 'filters', 'type' => 'root'] // 'type' => 'child' || 'root'
     ];
 
     private $blockNeedle = [
